@@ -1,0 +1,1541 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Bright Beginnings</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Cormorant+Garamond:wght@600&display=swap');
+    :root {
+      color-scheme: light dark;
+      --bg: #fff9f2;
+      --surface: #fffefa;
+      --surface-soft: #eef2e8;
+      --ink: #24302c;
+      --muted: #65716b;
+      --line: #d9d8cc;
+      --blush: #f2c14e;
+      --blush-dark: #234238;
+      --lavender: #e4dac1;
+      --lavender-dark: #625c42;
+      --sage: #dce9df;
+      --sage-dark: #234238;
+      --peach: #dca278;
+      --peach-dark: #785036;
+      --button-ink: #24302c;
+      --secondary-ink: #373323;
+      --sage-ink: #24302c;
+      --peach-ink: #342317;
+      --shadow: 0 8px 20px rgba(36, 48, 44, .08);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #17221e;
+        --surface: #213029;
+        --surface-soft: #2e473a;
+        --ink: #fbf5ec;
+        --muted: #bec8c1;
+        --line: #48584f;
+        --blush: #f2c14e;
+        --blush-dark: #f2c14e;
+        --lavender: #6e674f;
+        --lavender-dark: #eee5c9;
+        --sage: #395747;
+        --sage-dark: #f2c14e;
+        --peach: #a96648;
+        --peach-dark: #f4d5bf;
+        --button-ink: #24302c;
+        --secondary-ink: #fbf5ec;
+        --sage-ink: #fbf5ec;
+        --peach-ink: #fbf5ec;
+        --shadow: 0 10px 26px rgba(0, 0, 0, .24);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Atkinson Hyperlegible", "Trebuchet MS", sans-serif;
+      line-height: 1.55;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--lavender-dark) 45%, transparent);
+      outline-offset: 2px;
+    }
+    .shell { width: min(100%, 1040px); margin: 0 auto; padding: 20px 16px 170px; }
+    .record-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 4px 20px;
+      background: transparent;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 22px;
+    }
+    .record-copy { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .record-copy svg { flex: 0 0 30px; color: var(--blush-dark); }
+    .record-copy strong, .record-copy span { display: block; }
+    .record-copy span { color: var(--muted); font-size: .88rem; }
+    .mini-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .btn {
+      border: 0;
+      border-radius: 13px;
+      padding: 12px 16px;
+      min-height: 46px;
+      color: var(--button-ink);
+      background: var(--blush);
+      font-weight: 800;
+      box-shadow: 0 4px 0 color-mix(in srgb, var(--blush-dark) 35%, transparent);
+    }
+    .btn:hover { filter: brightness(.98); }
+    .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 color-mix(in srgb, var(--blush-dark) 35%, transparent); }
+    .btn.secondary { background: var(--lavender); color: var(--secondary-ink); box-shadow: 0 4px 0 color-mix(in srgb, var(--lavender-dark) 35%, transparent); }
+    .btn.sage { background: var(--sage); color: var(--sage-ink); box-shadow: 0 4px 0 color-mix(in srgb, var(--sage-dark) 35%, transparent); }
+    .btn.peach { background: var(--peach); color: var(--peach-ink); box-shadow: 0 4px 0 color-mix(in srgb, var(--peach-dark) 35%, transparent); }
+    .btn.ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
+    .btn.big { width: 100%; min-height: 58px; font-size: 1.06rem; }
+    h1, h2, h3 { font-family: inherit; line-height: 1.12; font-weight: 800; margin: 0; letter-spacing: -.025em; }
+    h1 { font-size: clamp(2.35rem, 8vw, 3.65rem); max-width: 13ch; line-height: .98; letter-spacing: -.045em; }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+    h3 { font-size: 1.15rem; }
+    p { margin: 0; }
+    .hero { margin-bottom: 22px; }
+    .brand-wordmark {
+      position: relative;
+      display: inline-block;
+      max-width: none;
+      padding-bottom: 17px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      font-weight: 600;
+      line-height: .92;
+      letter-spacing: .025em;
+    }
+    .brand-wordmark::after {
+      content: "";
+      position: absolute;
+      left: 8%;
+      bottom: 2px;
+      width: 84%;
+      height: 11px;
+      border-bottom: 1.5px solid var(--blush);
+      border-radius: 0 0 50% 50%;
+    }
+    .hero-main {
+      min-height: 260px;
+      padding: clamp(28px, 6vw, 52px);
+      background: var(--blush-dark);
+      color: var(--bg);
+      border-radius: 22px 6px 22px 6px;
+    }
+    .hero-main p { color: color-mix(in srgb, var(--bg) 82%, transparent); font-size: 1.03rem; margin: 16px 0 22px; max-width: 58ch; }
+    .progress-block { margin-top: 12px; }
+    .progress-line { height: 9px; background: color-mix(in srgb, var(--bg) 30%, transparent); border-radius: 99px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 0; background: var(--blush); border-radius: inherit; transition: width .25s ease; }
+    .progress-meta { display: flex; justify-content: space-between; gap: 10px; margin-top: 7px; color: color-mix(in srgb, var(--bg) 78%, transparent); font-size: .86rem; }
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px 22px 8px 22px; padding: 20px; box-shadow: none; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: grid; gap: 7px; }
+    label { font-weight: 800; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    .setup-note { color: var(--muted); font-size: .92rem; margin-top: 12px; }
+    .day-rhythm { margin: 14px 0 0; padding-left: 22px; }
+    .day-rhythm li + li { margin-top: 8px; }
+    .day-rhythm strong { color: var(--blush-dark); }
+    .screen { display: none; }
+    .screen.active { display: block; }
+    .screen-head { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin: 0 0 18px; }
+    .screen-head p { color: var(--muted); margin-top: 5px; }
+    .week-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .week-card {
+      text-align: left;
+      border: 1px solid var(--line);
+      border-top: 2px solid var(--ink);
+      background: var(--surface);
+      color: var(--ink);
+      border-radius: 6px 16px 6px 16px;
+      padding: 16px;
+      min-height: 180px;
+    }
+    .week-card:hover { border-color: var(--blush); }
+    .week-card strong, .week-card span { display: block; }
+    .week-card strong { font-family: "Bree Serif", Georgia, serif; font-size: 1.12rem; margin: 4px 0; }
+    .week-card span { color: var(--muted); font-size: .86rem; }
+    .week-card .week-num { color: var(--blush-dark); font-weight: 800; }
+    .dots { display: flex; gap: 4px; margin-top: 12px; }
+    .dot { width: 17px; height: 6px; border-radius: 99px; background: var(--line); }
+    .dot.done { background: var(--sage-dark); }
+    .lesson-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+    .back { border: 0; background: transparent; color: var(--blush-dark); font-weight: 800; padding: 8px 0; }
+    .week-summary { padding: 18px; background: var(--surface-soft); border-radius: 18px; margin-bottom: 16px; }
+    .week-summary p { color: var(--muted); margin-top: 6px; }
+    .day-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; margin: 16px 0; }
+    .day-tab { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 12px; padding: 10px 4px; font-weight: 800; }
+    .day-tab.active { background: var(--lavender); color: var(--secondary-ink); border-color: transparent; }
+    .day-tab.done::after { content: " ✓"; color: var(--sage-dark); }
+    .attendance { display: flex; gap: 8px; flex-wrap: wrap; padding: 14px 0 4px; }
+    .choice { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 99px; padding: 9px 14px; font-weight: 800; }
+    .choice.active { background: var(--sage); color: var(--sage-ink); border-color: transparent; }
+    .choice:disabled { cursor: not-allowed; opacity: .55; }
+    .lesson-list { display: grid; gap: 12px; margin: 16px 0; }
+    .lesson-card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); }
+    .lesson-card:nth-child(2) .lesson-title { background: color-mix(in srgb, var(--sage) 55%, var(--surface)); }
+    .lesson-card:nth-child(3) .lesson-title { background: color-mix(in srgb, var(--peach) 55%, var(--surface)); }
+    .lesson-card:nth-child(4) .lesson-title { background: color-mix(in srgb, var(--lavender) 55%, var(--surface)); }
+    .lesson-title { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; background: color-mix(in srgb, var(--blush) 45%, var(--surface)); }
+    .lesson-title button { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 99px; padding: 8px 12px; font-weight: 800; white-space: nowrap; }
+    .lesson-title button.done { background: var(--sage-dark); color: var(--surface); border-color: transparent; }
+    .lesson-body { padding: 16px; }
+    .lesson-body p + p { margin-top: 10px; }
+    .lesson-body .prompt { color: var(--muted); font-style: italic; }
+    .practice-box { margin-top: 14px; padding: 15px; background: var(--surface-soft); border-radius: 12px; }
+    .practice-box h4 { margin: 0 0 8px; font-size: 1rem; }
+    .practice-box ol, .practice-box ul { margin: 8px 0 0; padding-left: 24px; }
+    .practice-box li + li { margin-top: 7px; }
+    .word-bank { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+    .word-bank span { padding: 4px 9px; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; font-weight: 700; }
+    .reading-passage { margin-top: 14px; padding: 18px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px 16px 6px 16px; }
+    .reading-passage h4 { margin: 0 0 9px; color: var(--blush-dark); font-size: 1.1rem; }
+    .reading-passage p { font-size: 1.04rem; line-height: 1.7; }
+    .lesson-focus { margin: 0 0 12px; padding: 12px 14px; border-left: 4px solid var(--blush-dark); background: var(--surface-soft); }
+    .lesson-focus strong { display: block; margin-bottom: 4px; }
+    .check-banner { margin: 0 0 16px; padding: 14px 16px; background: var(--blush); color: var(--button-ink); border-radius: 6px 16px 6px 16px; }
+    .check-banner strong { display: block; font-size: 1.05rem; }
+    .check-banner span { display: block; margin-top: 3px; }
+    .task-steps { margin: 10px 0 0; padding-left: 24px; }
+    .task-steps li + li { margin-top: 7px; }
+    details.answer-key { margin-top: 13px; border-top: 1px solid var(--line); padding-top: 11px; }
+    details.answer-key summary { cursor: pointer; color: var(--blush-dark); font-weight: 800; }
+    details.answer-key ol { margin-top: 9px; }
+    .day-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .records-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 14px 0; }
+    .stat { padding: 14px; background: var(--surface-soft); border-radius: 14px; }
+    .stat strong, .stat span { display: block; }
+    .stat strong { font-family: "Bree Serif", Georgia, serif; font-size: 1.6rem; }
+    .stat span { color: var(--muted); font-size: .82rem; }
+    .grade-list { display: grid; gap: 10px; margin-top: 14px; }
+    .grade-row { display: grid; grid-template-columns: 1fr repeat(3, 90px); gap: 8px; align-items: center; }
+    .grade-row.header { color: var(--muted); font-size: .8rem; font-weight: 800; }
+    .reading-log { display: grid; gap: 10px; margin-top: 16px; }
+    .reading-row { display: grid; grid-template-columns: 160px 1fr auto; gap: 10px; align-items: end; }
+    .reading-row .btn { min-height: 46px; }
+    .library-toolbar { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(150px, .75fr) minmax(150px, .75fr); gap: 10px; margin: 16px 0; }
+    .library-summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 18px; margin-bottom: 16px; background: var(--surface-soft); border-radius: 6px 18px 6px 18px; }
+    .library-summary strong, .library-summary span { display: block; }
+    .library-summary span { color: var(--muted); font-size: .9rem; }
+    .library-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .book-card { display: grid; grid-template-rows: 178px auto; min-width: 0; overflow: hidden; padding: 0; text-align: left; border: 1px solid var(--line); border-radius: 7px 19px 7px 19px; background: var(--surface); color: var(--ink); }
+    .book-card:hover { border-color: var(--blush-dark); }
+    .book-cover { position: relative; display: grid; place-items: center; padding: 10px; color: #26372f; overflow: hidden; }
+    .book-cover svg { width: 100%; height: 100%; filter: drop-shadow(0 3px 2px rgba(36, 48, 44, .12)); }
+    .cover-sage { background: #dce9df; }
+    .cover-gold { background: #f4d889; }
+    .cover-peach { background: #edc2a4; }
+    .cover-blue { background: #cddde2; }
+    .cover-rose { background: #ead0ce; }
+    .cover-olive { background: #d8ddbc; }
+    .book-info { padding: 15px; }
+    .book-info h3 { margin: 4px 0 6px; }
+    .book-info p { color: var(--muted); font-size: .9rem; }
+    .book-meta { display: flex; flex-wrap: wrap; gap: 6px; color: var(--muted); font-size: .8rem; font-weight: 800; }
+    .book-meta span { padding: 3px 8px; border: 1px solid var(--line); border-radius: 99px; }
+    .book-status { display: block; margin-top: 11px; color: var(--sage-dark); font-weight: 800; font-size: .88rem; }
+    .reader { max-width: 820px; margin: 0 auto; }
+    .reader-head { margin-bottom: 14px; }
+    .reader-layout { display: grid; grid-template-columns: minmax(190px, .62fr) minmax(0, 1.38fr); gap: 18px; align-items: stretch; }
+    .reader-cover { min-height: 320px; border-radius: 7px 22px 7px 22px; }
+    .reader-cover svg { width: 110px; height: 110px; }
+    .reader-paper { display: flex; min-height: 320px; flex-direction: column; padding: clamp(24px, 5vw, 42px); background: var(--surface); border: 1px solid var(--line); border-radius: 22px 7px 22px 7px; }
+    .reader-paper h2 { margin: 8px 0 16px; }
+    .reader-words { margin-bottom: 18px; padding: 10px 12px; background: var(--surface-soft); border-radius: 10px; color: var(--muted); font-size: .88rem; }
+    .reader-words strong { color: var(--ink); }
+    .page-copy { font-size: clamp(1.18rem, 2.5vw, 1.38rem); line-height: 1.75; }
+    .reader-progress { margin-top: auto; padding-top: 28px; }
+    .reader-progress-track { height: 7px; background: var(--line); border-radius: 99px; overflow: hidden; }
+    .reader-progress-fill { height: 100%; background: var(--sage-dark); border-radius: inherit; }
+    .reader-actions { display: grid; grid-template-columns: 1fr 1.25fr; gap: 10px; margin-top: 14px; }
+    .library-empty { grid-column: 1 / -1; }
+    .certificate-wrap { display: grid; grid-template-columns: minmax(240px, .72fr) minmax(0, 1.28fr); gap: 20px; align-items: start; }
+    .certificate-fields { display: grid; gap: 14px; }
+    .certificate-preview {
+      min-height: 390px;
+      display: grid;
+      place-items: center;
+      padding: 34px;
+      text-align: center;
+      color: #24302c;
+      background: #fffdf7;
+      border: 8px double #9db394;
+      outline: 2px solid #f2c14e;
+      outline-offset: -15px;
+    }
+    .certificate-preview h3 { font-family: Georgia, serif; font-size: clamp(1.8rem, 4vw, 2.65rem); color: #234238; margin-bottom: 18px; }
+    .certificate-preview .certificate-name { display: block; min-height: 46px; margin: 18px auto 10px; padding: 0 18px 6px; border-bottom: 1px solid #785036; font-family: Georgia, serif; font-size: clamp(1.45rem, 3vw, 2rem); color: #785036; }
+    .certificate-preview .certificate-date { margin-top: 26px; }
+    .certificate-preview .certificate-mark { color: #526b51; font-size: 1.8rem; line-height: 1; margin-bottom: 14px; }
+    .download-list { display: grid; gap: 10px; margin-top: 16px; }
+    .download-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .download-item:last-child { border-bottom: 0; }
+    .download-item p { color: var(--muted); font-size: .88rem; margin-top: 3px; }
+    .save-card { background: var(--surface-soft); border: 2px solid var(--blush); box-shadow: none; }
+    .save-card h2 { margin-bottom: 6px; }
+    .save-card > p { color: var(--muted); }
+    .save-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+    .save-confirmation { display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px; background: var(--sage); color: var(--sage-ink); font-weight: 800; }
+    .save-confirmation.show { display: flex; align-items: center; gap: 9px; }
+    .save-confirmation svg { width: 22px; height: 22px; flex: 0 0 auto; }
+    .notice { display: none; position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%); z-index: 30; width: min(calc(100% - 32px), 560px); padding: 15px 18px; background: var(--sage-dark); color: var(--surface); border: 2px solid var(--sage); border-radius: 13px; box-shadow: var(--shadow); text-align: center; font-weight: 800; }
+    .notice.show { display: block; }
+    .bottom-nav { position: fixed; z-index: 20; bottom: 0; left: 0; right: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; padding: 9px max(10px, env(safe-area-inset-left)) calc(9px + env(safe-area-inset-bottom)); background: color-mix(in srgb, var(--surface) 94%, transparent); border-top: 1px solid var(--line); }
+    .nav-btn { border: 0; background: transparent; color: var(--muted); border-radius: 10px; padding: 8px 4px; font-weight: 800; }
+    .nav-btn svg { display: block; margin: 0 auto 3px; width: 22px; height: 22px; }
+    .nav-btn.active { color: var(--blush-dark); background: var(--surface-soft); }
+    .brand-foot { text-align: center; color: var(--muted); padding: 28px 0 0; font-size: .88rem; }
+    .hidden { display: none !important; }
+    .empty { text-align: center; color: var(--muted); padding: 26px 10px; }
+    @media (max-width: 760px) {
+      .two-col, .records-grid, .certificate-wrap { grid-template-columns: 1fr; }
+      .week-grid { grid-template-columns: 1fr 1fr; }
+      .record-banner { align-items: flex-start; flex-direction: column; }
+      .mini-actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+      .grade-row { grid-template-columns: 1fr repeat(3, 64px); }
+      .library-grid { grid-template-columns: 1fr 1fr; }
+      .reader-layout { grid-template-columns: 1fr; }
+      .reader-cover { min-height: 210px; }
+      .download-item { align-items: flex-start; flex-direction: column; }
+      .download-item .btn { width: 100%; }
+    }
+    @media (max-width: 440px) {
+      .shell { padding-inline: 12px; }
+      .record-banner { gap: 10px; padding-top: 6px; padding-bottom: 12px; }
+      .record-copy span { display: none; }
+      .record-copy svg { flex-basis: 24px; width: 24px; }
+      .record-copy strong { font-size: .95rem; }
+      .mini-actions .btn { min-height: 40px; padding: 8px 10px; font-size: .88rem; }
+      .hero-main { min-height: 0; padding: 24px 28px; }
+      .hero-main p { margin: 12px 0 16px; font-size: .96rem; }
+      .brand-wordmark { font-size: clamp(2rem, 9vw, 2.25rem); letter-spacing: .015em; white-space: nowrap; }
+      .week-grid { grid-template-columns: 1fr; }
+      .day-tab { font-size: .82rem; }
+      .day-actions, .save-actions { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr; }
+      .grade-row { grid-template-columns: 1fr; padding: 12px 0; border-bottom: 1px solid var(--line); }
+      .grade-row.header { display: none; }
+      .grade-row input::before { content: attr(aria-label); }
+      .reading-row { grid-template-columns: 1fr; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+      .reading-row .btn { width: 100%; }
+      .library-toolbar, .library-grid { grid-template-columns: 1fr; }
+      .library-summary { align-items: flex-start; flex-direction: column; }
+      .book-card { grid-template-columns: 112px 1fr; grid-template-rows: auto; min-height: 150px; }
+      .book-cover { min-height: 150px; padding: 14px; }
+      .book-cover svg { width: 58px; height: 58px; }
+      .reader-actions { grid-template-columns: 1fr; }
+      .certificate-preview { min-height: 330px; padding: 28px 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+    @media print {
+      .bottom-nav, .record-banner, .btn, button { display: none !important; }
+      body { background: #fff; color: #111; }
+      .shell { padding: 0; }
+      .panel { box-shadow: none; break-inside: avoid; }
+    }
+  
+    /* Buyer access gate */
+    #bb-gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center;
+      background: #fff9f2; padding: 24px; }
+    #bb-gate[hidden] { display: none; }
+    .bb-gate-card { background: #fffefa; border: 1px solid #e8ddd0; border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(63, 47, 36, .08); padding: 40px 32px; max-width: 380px; width: 100%; text-align: center; }
+    .bb-gate-card h1 { font-size: 26px; margin: 0 0 6px; color: #24302c; }
+    .bb-gate-card p { color: #6b6259; font-size: 15px; margin: 0 0 20px; }
+    .bb-gate-card input { width: 100%; padding: 14px 16px; font-size: 17px; text-align: center; letter-spacing: 2px;
+      border: 1.5px solid #e8ddd0; border-radius: 14px; background: #fff9f2; color: #24302c;
+      text-transform: uppercase; box-sizing: border-box; }
+    .bb-gate-card input:focus { outline: none; border-color: #dca278; }
+    .bb-gate-card button { width: 100%; margin-top: 14px; padding: 15px; font-size: 17px; font-weight: 700;
+      border: none; border-radius: 14px; background: #dca278; color: #fffefa; cursor: pointer; }
+    .bb-gate-err { color: #a33; font-size: 14px; margin-top: 10px; min-height: 20px; }
+    .bb-gate-brand { font-size: 13px; letter-spacing: 4px; color: #dca278; font-weight: 700; margin-bottom: 14px; }
+</style>
+</head>
+<body>
+  <div id="bb-gate" hidden>
+    <div class="bb-gate-card">
+      <div class="bb-gate-brand">BEKESTUDIO</div>
+      <h1>Bright Beginnings</h1>
+      <p>Enter the access code from your purchase receipt to unlock your full first grade year.</p>
+      <input id="bb-code" type="text" placeholder="ACCESS CODE" autocomplete="off" maxlength="16" />
+      <button id="bb-unlock" type="button">Unlock my year</button>
+      <div class="bb-gate-err" id="bb-err"></div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var CODE = "BRIGHT29";
+    var KEY = "bb_access_granted";
+    function show() { document.getElementById("bb-gate").hidden = false; }
+    function hide() { document.getElementById("bb-gate").hidden = true; }
+    try {
+      if (localStorage.getItem(KEY) === "yes") { return; }
+    } catch (e) {}
+    show();
+    function attempt() {
+      var v = document.getElementById("bb-code").value.trim().toUpperCase();
+      if (v === CODE) {
+        try { localStorage.setItem(KEY, "yes"); } catch (e) {}
+        hide();
+      } else {
+        document.getElementById("bb-err").textContent = "That code did not match. Check your receipt and try again.";
+      }
+    }
+    document.getElementById("bb-unlock").addEventListener("click", attempt);
+    document.getElementById("bb-code").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") attempt();
+    });
+  })();
+  </script>
+
+  <main class="shell">
+    <section class="record-banner" aria-label="Record file reminder">
+      <div class="record-copy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 3h11l3 3v15H5z"/><path d="M8 3v6h8V3M8 15h8M8 18h5"/></svg>
+        <div><strong>Your records stay in your file</strong><span>Save before you leave. Load the file when you come back.</span></div>
+      </div>
+      <div class="mini-actions">
+        <button class="btn" id="saveTop">Save Our Records</button>
+        <button class="btn secondary" id="loadTop">Load Our Records</button>
+      </div>
+    </section>
+
+    <section id="home" class="screen active">
+      <div class="hero">
+        <div class="hero-main">
+          <h1 class="brand-wordmark">Bright Beginnings</h1>
+          <p>A complete first grade year with taught lessons, daily practice, original reading, weekly quizzes, four review tests, projects, creativity, and movement.</p>
+          <button class="btn big" id="continueBtn">Begin Week 1, Day 1</button>
+          <div class="progress-block">
+            <div class="progress-line"><div class="progress-fill" id="homeProgress"></div></div>
+            <div class="progress-meta"><span id="progressText">0 of 180 days complete</span><span id="progressPercent">0 percent</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="two-col">
+        <section class="panel">
+          <h2>Your learner</h2>
+          <div class="two-col" style="margin-top:14px">
+            <div class="field"><label for="studentName">Student name</label><input id="studentName" autocomplete="off" placeholder="Type a name" /></div>
+            <div class="field"><label for="schoolYear">School year</label><input id="schoolYear" autocomplete="off" placeholder="Example: 2026 to 2027" /></div>
+          </div>
+          <p class="setup-note">These details will appear in downloaded reports and in your records file.</p>
+        </section>
+        <section class="panel">
+          <h2>Your school day rhythm</h2>
+          <ol class="day-rhythm">
+            <li><strong>Language Arts</strong> for 35 to 45 minutes</li>
+            <li><strong>Math</strong> for 25 to 35 minutes</li>
+            <li><strong>Discovery</strong> for 20 to 30 minutes</li>
+            <li><strong>Creative work and movement</strong> to finish the day</li>
+          </ol>
+          <p class="setup-note">Each week teaches new material across five distinct days, ending with a quiz. Weeks 9, 18, 27, and 36 include review tests.</p>
+        </section>
+      </div>
+    </section>
+
+    <section id="weeks" class="screen">
+      <div class="screen-head"><div><h2>Choose a week</h2><p>Each week has five guided days.</p></div></div>
+      <div id="weekGrid" class="week-grid"></div>
+    </section>
+
+    <section id="library" class="screen">
+      <div id="libraryBrowser">
+        <div class="screen-head"><div><h2>Reading library</h2><p>Read thirty six complete original books in order, from first sounds to fluent first grade reading.</p></div></div>
+        <div class="library-summary">
+          <div><strong id="libraryProgressText">0 of 36 books finished</strong><span>Your page and finished books are included when you save your family records file.</span></div>
+          <button class="btn ghost" id="continueBook" hidden>Continue reading</button>
+        </div>
+        <div class="library-toolbar" aria-label="Library filters">
+          <div class="field"><label for="bookSearch">Find a book</label><input id="bookSearch" type="search" placeholder="Search by title or theme" autocomplete="off"></div>
+          <div class="field"><label for="levelFilter">Reading level</label><select id="levelFilter"><option value="all">All levels</option><option value="1">Level 1</option><option value="2">Level 2</option><option value="3">Level 3</option><option value="4">Level 4</option></select></div>
+          <div class="field"><label for="topicFilter">Theme</label><select id="topicFilter"><option value="all">All themes</option><option value="Animals">Animals</option><option value="Everyday Life">Everyday Life</option><option value="Friendship">Friendship</option><option value="Imagination">Imagination</option><option value="Nature">Nature</option></select></div>
+        </div>
+        <div id="libraryGrid" class="library-grid"></div>
+      </div>
+      <article id="bookReader" class="reader hidden" aria-live="polite">
+        <button class="back" id="backToLibrary">‹ Reading library</button>
+        <div class="reader-head">
+          <div class="book-meta" id="readerMeta"></div>
+        </div>
+        <div class="reader-layout">
+          <div class="book-cover reader-cover" id="readerCover"></div>
+          <div class="reader-paper">
+            <p class="setup-note" id="readerPageLabel">Page 1 of 5</p>
+            <h2 id="readerTitle"></h2>
+            <p class="reader-words" id="readerWords"></p>
+            <p class="page-copy" id="readerText"></p>
+            <div class="reader-progress"><div class="reader-progress-track"><div class="reader-progress-fill" id="readerProgressFill"></div></div></div>
+          </div>
+        </div>
+        <div class="reader-actions">
+          <button class="btn secondary" id="previousPage">Previous page</button>
+          <button class="btn sage" id="nextPage">Next page</button>
+        </div>
+      </article>
+    </section>
+
+    <section id="lesson" class="screen">
+      <button class="back" id="backToWeeks">‹ All weeks</button>
+      <div class="week-summary"><h2 id="lessonHeading">Week 1</h2><p id="lessonSummary"></p></div>
+      <div class="day-tabs" id="dayTabs"></div>
+      <section class="panel">
+        <div class="lesson-top"><div><h3 id="dayHeading">Day 1</h3><p class="setup-note" id="dailyHabit">Read aloud for fifteen minutes. Practice handwriting for five minutes. Enjoy movement.</p></div></div>
+        <div><strong>Attendance</strong><div class="attendance" id="attendanceChoices"></div></div>
+        <div id="weekCheckBanner"></div>
+        <div class="lesson-list" id="lessonList"></div>
+        <div class="field"><label for="workNote">Completed work note</label><textarea id="workNote" placeholder="Record a page, project, book, or work sample completed today"></textarea></div>
+        <div class="day-actions"><button class="btn sage" id="markDayBtn">Mark the whole day complete</button><button class="btn secondary" id="nextDayBtn">Go to the next day</button></div>
+      </section>
+    </section>
+
+    <section id="records" class="screen">
+      <div class="screen-head"><div><h2>Family records</h2><p>Attendance, grades, progress, and completed work stay together.</p></div></div>
+      <div class="records-grid">
+        <section class="panel">
+          <h3>Year progress</h3>
+          <div class="stat-row">
+            <div class="stat"><strong id="daysDoneStat">0</strong><span>days complete</span></div>
+            <div class="stat"><strong id="presentStat">0</strong><span>days present</span></div>
+            <div class="stat"><strong id="workStat">0</strong><span>work notes</span></div>
+            <div class="stat"><strong id="libraryStat">0</strong><span>books finished</span></div>
+          </div>
+          <button class="btn ghost big" id="jumpNext">Open the next lesson</button>
+        </section>
+        <section class="panel save-card">
+          <h2>Keep your records safe</h2>
+          <p>Download your family file after each school day. Keep it on your phone or in cloud storage. Load it the next time you open the app.</p>
+          <div class="save-actions"><button class="btn big" id="saveMain">Save Our Records</button><button class="btn secondary big" id="loadMain">Load Our Records</button></div>
+          <p class="save-confirmation" id="saveConfirmation" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg><span>Your records file downloaded successfully.</span></p>
+        </section>
+      </div>
+      <section class="panel" style="margin-top:16px">
+        <h3>Weekly grades</h3>
+        <p class="setup-note">Enter a score from 0 to 100 when you want a weekly grade. Leave it blank when no grade is needed.</p>
+        <div class="grade-list" id="gradeList"></div>
+      </section>
+      <section class="panel" style="margin-top:16px">
+        <h3>Reading log</h3>
+        <p class="setup-note">Write down each book your learner reads and the date it was finished.</p>
+        <div class="reading-log" id="readingLog"></div>
+        <button class="btn sage" id="addBook" style="margin-top:14px">Add a book</button>
+      </section>
+    </section>
+
+    <section id="reports" class="screen">
+      <div class="screen-head"><div><h2>Download reports</h2><p>Make clean copies for your family record folder.</p></div></div>
+      <section class="panel">
+        <div class="download-list">
+          <div class="download-item"><div><h3>Attendance report</h3><p>A spreadsheet with all 180 school days and attendance marks.</p></div><button class="btn sage" id="attendanceReport">Download attendance</button></div>
+          <div class="download-item"><div><h3>Grade report</h3><p>A spreadsheet with weekly subject scores and averages.</p></div><button class="btn secondary" id="gradeReport">Download grades</button></div>
+          <div class="download-item"><div><h3>Reading log</h3><p>A spreadsheet with every book and date entered in the reading log.</p></div><button class="btn sage" id="readingReport">Download reading log</button></div>
+          <div class="download-item"><div><h3>Printable year summary</h3><p>A complete printable page with progress, attendance, grades, work notes, and books read.</p></div><button class="btn peach" id="yearSummary">Download year summary</button></div>
+        </div>
+      </section>
+      <section class="panel" style="margin-top:16px">
+        <div class="screen-head"><div><h2>First grade completion certificate</h2><p>Fill in the name and date to make a certificate for the end of the school year.</p></div></div>
+        <div class="certificate-wrap">
+          <div class="certificate-fields">
+            <div class="field"><label for="certificateName">Child name</label><input id="certificateName" autocomplete="off" placeholder="Type a name" /></div>
+            <div class="field"><label for="certificateDate">Completion date</label><input id="certificateDate" type="date" aria-label="Completion date" /></div>
+            <button class="btn peach big" id="certificateDownload">Download printable certificate</button>
+            <p class="setup-note">Open the downloaded certificate and use your device print option when you are ready.</p>
+          </div>
+          <div class="certificate-preview" id="certificatePreview" aria-live="polite">
+            <div>
+              <div class="certificate-mark" aria-hidden="true">✦</div>
+              <h3>Certificate of Completion</h3>
+              <p>This certifies that</p>
+              <strong class="certificate-name" id="certificatePreviewName">Your learner</strong>
+              <p>has completed first grade through Bright Beginnings.</p>
+              <p class="certificate-date" id="certificatePreviewDate">Completion date</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="panel" style="margin-top:16px">
+        <h3>What your family file keeps</h3>
+        <p class="setup-note">Student details, attendance, every lesson mark, weekly grades, completed work notes, reading log entries, library reading progress, certificate details, and the date the file was saved.</p>
+      </section>
+      <p class="brand-foot">Created with care by BékeStudio</p>
+    </section>
+  </main>
+
+  <input type="file" id="filePicker" accept="application/json,.json" class="hidden" />
+  <div class="notice" id="notice" role="status" aria-live="polite"></div>
+
+  <nav class="bottom-nav" aria-label="Main sections">
+    <button class="nav-btn active" data-screen="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5L12 4l9 7.5V21h-6v-6H9v6H3z"/></svg>Home</button>
+    <button class="nav-btn" data-screen="weeks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v15H4zM8 3v4M16 3v4M4 10h16"/></svg>Weeks</button>
+    <button class="nav-btn" data-screen="library"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5.5c2.8-.8 5.5-.3 8 1.5v13c-2.5-1.8-5.2-2.3-8-1.5zM20 5.5c-2.8-.8-5.5-.3-8 1.5v13c2.5-1.8 5.2-2.3 8-1.5z"/></svg>Library</button>
+    <button class="nav-btn" data-screen="records"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18H6zM9 7h6M9 11h6M9 15h4"/></svg>Records</button>
+    <button class="nav-btn" data-screen="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h14v16H5zM8 15l2-3 2 2 4-6M8 17h8"/></svg>Reports</button>
+  </nav>
+
+<script>
+const weeks = [
+  ["Ready to Learn","rhyming, letter sounds, and complete sentences","counting and writing numbers to 20","the learner and the school day"],
+  ["Short A","short a words and story details","compare numbers to 20","families and what makes each one special"],
+  ["Short I","short i words and retelling","addition stories within 10","living and nonliving things"],
+  ["Short O","short o words and characters","subtraction stories within 10","what plants need"],
+  ["Short E","short e words and setting","two dimensional shapes","community helpers"],
+  ["Short U","short u words and beginning, middle, and end","fact families within 10","weather and the four seasons"],
+  ["Digraphs","sh, ch, th, and wh","teen numbers as ten and ones","rules, fairness, and responsibility"],
+  ["Beginning Blends","blends with l, r, and s","tens and ones to 50","maps, symbols, and directions"],
+  ["Quarter One Review","short vowels, digraphs, and story elements","numbers, facts, and shapes","review and portfolio celebration"],
+  ["Ending Blends","ending blends and fluent phrases","addition and subtraction facts within 10","light and how we see"],
+  ["Silent E","long a and long i with silent e","addition within 20","sound and vibration"],
+  ["More Silent E","long o and long u with silent e","subtraction within 20","patterns of the sun, moon, and stars"],
+  ["Vowel Teams","ai, ay, ee, and ea","doubles and near doubles","leaders, laws, and local government"],
+  ["Long O Teams","oa and ow","make a ten to add","American symbols and shared traditions"],
+  ["R Controlled Vowels","ar and or","measure and compare length","long ago and today"],
+  ["More R Controlled Vowels","er, ir, and ur","tell time to the hour and half hour","needs, wants, goods, and services"],
+  ["Word Parts","compound words and contractions","collect and read picture graph data","places and people in a community"],
+  ["Quarter Two Review","long vowels and word parts","facts, time, length, and data","review and portfolio celebration"],
+  ["Soft C and G","soft c and soft g","add one digit numbers to two digit numbers","plant parts and plant survival"],
+  ["Word Endings","plural s and es","subtract multiples of ten","animal parents and young"],
+  ["Past and Present","endings ed and ing","compare two digit numbers","traits that young share with parents"],
+  ["Syllables","count and divide syllables","organize and interpret data","habitats and animal needs"],
+  ["Story Thinking","characters, setting, problem, and solution","compose and decompose shapes","landforms and map features"],
+  ["Main Idea","main topic and key details","halves and fourths","water, weather, and seasonal patterns"],
+  ["Text Features","headings, captions, and diagrams","time and coin recognition","using sources to find facts"],
+  ["Opinion Writing","state an opinion and give reasons","add three numbers with sums to 20","important people and events in American history"],
+  ["Quarter Three Review","fluency, comprehension, and writing","place value, geometry, and data","review and portfolio celebration"],
+  ["Narrative Writing","sequence events with time words","count, read, and write numbers to 120","communities change over time"],
+  ["Informational Writing","topic, facts, and closing","fact fluency within 20","plants and animals through the seasons"],
+  ["Poetry and Language","rhythm, rhyme, and sensory words","compare and measure objects","sunlight, shadows, and daylight"],
+  ["Author and Reader","author purpose and point of view","make and answer questions about data","choices, saving, and spending"],
+  ["Research Skills","ask questions and record facts","place value strategies within 100","life cycles"],
+  ["Engineering Week","read directions and explain steps","solve mixed word problems","design a tool inspired by plants or animals"],
+  ["Editing Week","capitals, punctuation, spelling, and grammar","review time, shapes, and measurement","cultures, traditions, and respectful curiosity"],
+  ["Capstone Project","plan, write, revise, and present","use math to plan and explain","a project about the learner’s world"],
+  ["Year End Celebration","read, write, speak, and reflect","show growth across grade 1 math","final portfolio and celebration"]
+];
+const subjects = ["Language Arts", "Math", "Discovery", "Creative and Movement"];
+const libraryBooks = [
+  { id:"book1", week:1, level:1, topic:"Everyday Life", title:"Sam and Pam Tap", phonics:"Rhyming and letter sounds", math:"Count to 20", heart:["and","can","make"], pages:[
+    "Sam can tap. Pam can tap.",
+    "Sam and Pam can nap.",
+    "Sam taps 10. Pam taps 10.",
+    "10 and 10 make 20.",
+    "Sam and Pam tap, tap, tap."
+  ]},
+  { id:"book2", week:2, level:1, topic:"Everyday Life", title:"Max Packs a Bag", phonics:"Short a", math:"Compare numbers to 20", heart:["the","in","is","more","than","now","has"], pages:[
+    "Max has a tan bag. A cap is in the bag.",
+    "A map is in the bag. A pan is in the bag.",
+    "Max has 6 caps. Nan has 9 caps.",
+    "9 is more than 6. Max adds 3 caps.",
+    "Now Max has 9 caps. Nan has 9 caps."
+  ]},
+  { id:"book3", week:3, level:1, topic:"Animals", title:"Six Pigs in a Pit", phonics:"Short i", math:"Addition stories within 10", heart:["the","is","and","plus","now","pigs"], pages:[
+    "Kit is a pig. Kit can dig.",
+    "3 pigs sit in a pit.",
+    "2 pigs sit in. 3 plus 2 is 5.",
+    "Kit sits in. Now 6 pigs sit.",
+    "Kit and 5 pigs sit in the big pit."
+  ]},
+  { id:"book4", week:4, level:1, topic:"Everyday Life", title:"Dot Has Ten Dots", phonics:"Short o", math:"Subtraction stories within 10", heart:["has","dots","take away","the"], pages:[
+    "Dot has 10 dots.",
+    "Dot taps 3. 10 take away 3 is 7.",
+    "Dot taps 2. 7 take away 2 is 5.",
+    "Dot taps 5. 5 take away 5 is 0.",
+    "Dot did the job. Dot taps the box."
+  ]},
+  { id:"book5", week:5, level:1, topic:"Everyday Life", title:"Meg Gets Shapes", phonics:"Short e", math:"Two dimensional shapes", heart:["the","has","rectangle","circle","triangle","shapes"], pages:[
+    "Ben has a red rectangle.",
+    "Meg has a red circle.",
+    "A triangle is on the mat.",
+    "Meg sets the 3 shapes in a red bin.",
+    "The 3 shapes fit. Meg and Ben sit."
+  ]},
+  { id:"book6", week:6, level:1, topic:"Everyday Life", title:"Gus Has Six Cups", phonics:"Short u", math:"Fact families within 10", heart:["has","cups","the","puts","and","make","take away","now"], pages:[
+    "Gus has 6 cups.",
+    "4 cups sit on a rug. 2 cups sit in the tub.",
+    "4 and 2 make 6. 6 take away 2 is 4.",
+    "Gus tips a cup. He puts it up.",
+    "Now 6 cups sit in the tub."
+  ]},
+  { id:"book7", week:7, level:1, topic:"Nature", title:"Chip Finds Shells", phonics:"Sh, ch, th, and wh", math:"Teen numbers as ten and ones", heart:["the","he","one","that","home","go"], pages:[
+    "Chip is at the shop.",
+    "He gets 10 shells and 3 fish pins. 10 and 3 make 13.",
+    "Chip checks the shells. One has a chip.",
+    "He puts that shell back. 12 shells go home.",
+    "Chip shuts the bag. The shop trip is done."
+  ]},
+  { id:"book8", week:8, level:1, topic:"Everyday Life", title:"Fran Plants a Flag", phonics:"Beginning blends", math:"Tens and ones to 50", heart:["the","she","to","of","make","there"], pages:[
+    "Fran has a flag. She brings it to the grass.",
+    "The class has 3 stacks of 10 stones.",
+    "Fran adds 4 stones. 30 and 4 make 34.",
+    "A strong wind flaps the flag.",
+    "The flag stands. The class grins."
+  ]},
+  { id:"book9", week:9, level:1, topic:"Friendship", title:"The Picnic Check", phonics:"Short vowel review", math:"Numbers, facts, and shapes", heart:["the","has","and","plus","match","start"], pages:[
+    "Beth and Tim pack a picnic.",
+    "Beth has 8 cups. Tim has 6 plates.",
+    "Tim adds 2 plates. 6 plus 2 is 8.",
+    "The cups and plates match. A flat square cloth fits in the bag.",
+    "The pals sit on the grass. The picnic can start."
+  ]},
+  { id:"book10", week:10, level:2, topic:"Animals", title:"The Best Nest Contest", phonics:"Ending blends", math:"Facts within 10", pages:[
+    "Three birds want to build the best nest. Each bird brings twigs and grass.",
+    "Lark brings four twigs. Wren brings three, and Finch brings two.",
+    "Four plus three plus two makes nine twigs. The birds stack them with care.",
+    "A strong wind bends the nest, but it does not fall. The birds test it again.",
+    "They decide it is not a contest after all. The best nest is the one they built together."
+  ]},
+  { id:"book11", week:11, level:2, topic:"Everyday Life", title:"Jade Rides a Bike", phonics:"Long a and long i with silent e", math:"Addition within 20", pages:[
+    "Jade has a red bike. She rides five laps by the lake.",
+    "Her friend Mike rides six laps. They stop for a safe break.",
+    "Five laps plus six laps make eleven. Jade wants to ride four more.",
+    "Eleven plus four makes fifteen. Jade checks her helmet and rides.",
+    "At the end, Jade and Mike wave. They made fifteen careful laps."
+  ]},
+  { id:"book12", week:12, level:2, topic:"Imagination", title:"Rose and the Blue Flute", phonics:"Long o and long u with silent e", math:"Subtraction within 20", pages:[
+    "Rose brings a blue flute home. She hopes to play one clear tune.",
+    "She has sixteen note cards. Four cards show notes that are too high.",
+    "Sixteen take away four leaves twelve. Rose lines up the twelve notes.",
+    "A slow tune floats through the room. Even the old mule outside comes close.",
+    "Rose plays the tune once more. This time every note is true."
+  ]},
+  { id:"book13", week:13, level:2, topic:"Nature", title:"A Rainy Green Day", phonics:"Ai, ay, ee, and ea", math:"Doubles and near doubles", pages:[
+    "Rain falls all day, so May stays near the window. She sees green leaves gleam.",
+    "May places five bean seeds in one tray. She places five in another tray.",
+    "Five and five make ten. One extra seed makes eleven.",
+    "May labels each tray and keeps the soil damp. She will wait for each small sprout.",
+    "The next day, sunlight reaches the trays. May dreams of ten green plants and one more."
+  ]},
+  { id:"book14", week:14, level:2, topic:"Nature", title:"Joan Rows Home", phonics:"Oa and ow", math:"Make a ten to add", pages:[
+    "Joan rows a small boat across a slow pond. A crow follows from the shore.",
+    "Joan counts eight yellow flowers and five white flowers. She wants the total.",
+    "She moves two from five to make ten with eight. Three flowers remain.",
+    "Ten and three make thirteen. Joan smiles at her smart way to add.",
+    "A soft wind helps the boat glide home. The crow calls from an oak tree."
+  ]},
+  { id:"book15", week:15, level:2, topic:"Everyday Life", title:"Mark Measures the Barn", phonics:"Ar and or", math:"Measure and compare length", pages:[
+    "Mark helps on a farm. He wants to make a sign for the barn door.",
+    "The old board is twelve cubes long. A new board is sixteen cubes long.",
+    "The new board is four cubes longer. Mark draws a star in the center.",
+    "He checks the mark before he cuts. The board fits across the door.",
+    "The farmer thanks Mark for careful work. The bright sign can be seen from far away."
+  ]},
+  { id:"book16", week:16, level:2, topic:"Animals", title:"Fern Tells Time", phonics:"Er, ir, and ur", math:"Time to the hour and half hour", pages:[
+    "Fern cares for a hurt bird. The bird must rest in a warm box.",
+    "At eight o’clock, Fern gives it water. At half past eight, she checks its wing.",
+    "At nine o’clock, the bird chirps. Fern calls the animal helper.",
+    "At half past nine, the helper arrives. The bird is ready to travel.",
+    "Fern waves as the bird leaves. Her careful timing helped it grow stronger."
+  ]},
+  { id:"book17", week:17, level:2, topic:"Friendship", title:"The Sunflower Playhouse", phonics:"Compound words and contractions", math:"Picture graph data", pages:[
+    "Ana and Lee build a playhouse beside a sunflower patch. They cannot decide how to paint it.",
+    "They ask six friends to vote. Three choose green, two choose yellow, and one chooses blue.",
+    "Green has the most votes. Ana says it is a fair choice.",
+    "They paint the walls green and the door yellow. A blue flowerpot sits by the step.",
+    "The playhouse belongs to everyone. The friends are proud of the choices they made together."
+  ]},
+  { id:"book18", week:18, level:2, topic:"Friendship", title:"The Bright Kite Fair", phonics:"Long vowel and word part review", math:"Facts, time, length, and data", pages:[
+    "The class holds a kite fair at ten o’clock. Each team brings one kite.",
+    "Lee and Rose make a kite that is eighteen inches long. It has a bright green tail.",
+    "Their kite flies for twelve minutes. A blue kite flies for eight minutes.",
+    "The green kite flies four minutes longer. The class records every time on a chart.",
+    "No prize is needed. The teams cheer because every kite reached the sky."
+  ]},
+  { id:"book19", week:19, level:3, topic:"Nature", title:"Gem at the City Garden", phonics:"Soft c and soft g", math:"Add one digit numbers to two digit numbers", pages:[
+    "Gem visits the city garden with her class. She carries a small sketch pad.",
+    "The guide shows them twenty three celery plants. The class plants six more.",
+    "Twenty three plus six makes twenty nine. Gem records the new total.",
+    "Near the center, Gem sees a gentle giant statue. Sage grows around its base.",
+    "Gem draws the garden and labels each plant. Her page will help the class remember the visit."
+  ]},
+  { id:"book20", week:20, level:3, topic:"Animals", title:"Boxes for Ducklings", phonics:"Plural s and es", math:"Subtract multiples of ten", pages:[
+    "Two ducks need safe nests near the ponds. Lena collects boxes, dishes, and soft grasses.",
+    "The nature center has eighty boxes. It gives thirty boxes to nearby helpers.",
+    "Eighty take away thirty leaves fifty boxes. Lena uses two for the ducks.",
+    "The ducklings inspect both nests. They settle in the box with the thickest grass.",
+    "Lena places the extra box farther from the water. Another animal may need it one day."
+  ]},
+  { id:"book21", week:21, level:3, topic:"Nature", title:"The Growing Garden", phonics:"Endings ed and ing", math:"Compare two digit numbers", pages:[
+    "Mia helped Dad prepare the garden. They planted beans, carrots, and peas.",
+    "After many days, forty six bean stems were growing. Thirty nine pea stems were growing too.",
+    "Forty six is greater than thirty nine. The beans had sprouted first.",
+    "Mia kept watering each row. She measured every stem and recorded what changed.",
+    "By summer, both rows were full. Mia learned that steady care helps every garden grow."
+  ]},
+  { id:"book22", week:22, level:3, topic:"Animals", title:"Rabbit Picnic Basket", phonics:"Syllables", math:"Organize and read data", pages:[
+    "Rosa packs a picnic basket for a visit to the rabbit shelter. She brings carrots, lettuce, and apples.",
+    "The chart shows six rabbits like carrots. Four like lettuce, and two like apples.",
+    "Carrot has two beats when Rosa says it slowly. Lettuce has two beats too.",
+    "The rabbits eat while Rosa records the choices. Carrots are the favorite food today.",
+    "Rosa saves the chart for the next visit. Good helpers notice what animals need."
+  ]},
+  { id:"book23", week:23, level:3, topic:"Friendship", title:"Nora and the Lost Mitten", phonics:"Characters, setting, problem, and solution", math:"Compose and decompose shapes", pages:[
+    "Nora and her dog Pip walk on a snowy trail. Nora wears two warm mittens.",
+    "At the pine grove, one mitten is gone. That is the problem Nora must solve.",
+    "Pip sniffs near a square sign and two triangle markers. Together, the shapes make an arrow.",
+    "The arrow points back toward the bridge. Pip finds the mitten beside a round stone.",
+    "Nora thanks Pip and puts on the mitten. The friends return home before more snow falls."
+  ]},
+  { id:"book24", week:24, level:3, topic:"Nature", title:"Busy Bees Help the Garden", phonics:"Main topic and key details", math:"Halves and fourths", pages:[
+    "Bees visit flowers to gather nectar and pollen. Their work helps the whole garden.",
+    "A bee lands on one half of a flower bed. Another bee searches the other half.",
+    "Four small paths divide the next bed into fourths. Bees visit every part.",
+    "Pollen moves from flower to flower. This helps many plants make seeds.",
+    "The main idea is simple. Busy bees help plants grow while they gather food."
+  ]},
+  { id:"book25", week:25, level:3, topic:"Animals", title:"How a Frog Grows", phonics:"Headings, captions, and diagrams", math:"Time and coin recognition", pages:[
+    "Life in the Pond. A frog begins as an egg in water.",
+    "Tadpole Stage. A tadpole hatches with a tail and swims for food.",
+    "Growing Legs. Over time, the tadpole grows back legs, then front legs.",
+    "Young Frog. Its tail gets shorter. A picture caption can name each body part.",
+    "Adult Frog. The frog can hop near the pond and begin the life cycle again."
+  ]},
+  { id:"book26", week:26, level:3, topic:"Everyday Life", title:"Our Park Needs Trees", phonics:"Opinion and reasons", math:"Add three numbers within 20", pages:[
+    "I think our park needs more trees. Trees would make the park better for people and animals.",
+    "Four trees could shade the play area. Five trees could shelter birds near the path.",
+    "Six trees could grow beside the pond. Four plus five plus six makes fifteen.",
+    "Trees also clean the air and give families cool places to rest. These are strong reasons.",
+    "Our class will share the plan with the park team. Fifteen new trees would be a wonderful start."
+  ]},
+  { id:"book27", week:27, level:3, topic:"Friendship", title:"The River Review", phonics:"Fluency and comprehension review", math:"Place value, geometry, and data review", pages:[
+    "The class walks to the river for a review day. Each group carries a notebook and a shape card.",
+    "One group counts sixty two stones. They write six tens and two ones.",
+    "Another group finds circles, triangles, and rectangles in the park signs. They record the shapes on a chart.",
+    "The readers take turns reading a river poem with smooth voices. Then they answer questions with evidence.",
+    "Back at school, every group shares one discovery. Review day shows how much the class remembers."
+  ]},
+  { id:"book28", week:28, level:4, topic:"Friendship", title:"The Little Boat Race", phonics:"Narrative sequence", math:"Numbers to 120", pages:[
+    "First, June and Eli made small boats from folded paper. They wrote a number on each sail.",
+    "Next, they placed the boats in a shallow stream. Boat 108 moved ahead of boat 98.",
+    "Then boat 108 caught on a smooth stone. June used a long twig to set it free.",
+    "After that, both boats floated under the bridge. Boat 115 reached the finish first.",
+    "Finally, June and Eli dried the boats in the sun. They cared more about the adventure than the winner."
+  ]},
+  { id:"book29", week:29, level:4, topic:"Animals", title:"River Otters at Work", phonics:"Informational writing", math:"Fact fluency within 20", pages:[
+    "River otters are mammals that live near water. Their thick fur keeps them warm.",
+    "Webbed feet help otters swim. Strong tails help them turn quickly in the river.",
+    "Otters eat fish, frogs, and insects. One otter may dive many times to find a meal.",
+    "Young otters are called pups. They learn by playing, following, and watching older otters.",
+    "These facts show how an otter is built for life near water. Every body part has useful work to do."
+  ]},
+  { id:"book30", week:30, level:4, topic:"Nature", title:"Morning Rain Song", phonics:"Rhythm, rhyme, and sensory words", math:"Compare and measure objects", pages:[
+    "Rain taps softly on the glass. Drip, drop, morning rain.",
+    "Silver beads slide down the pane. Cool mist brushes the garden gate.",
+    "A puddle near the oak is nine inches wide. A puddle by the step is six inches wide.",
+    "The oak puddle is three inches wider. Both puddles shine when sunlight returns.",
+    "Roots drink deep, and green leaves wake. Soon bright birds will sing again."
+  ]},
+  { id:"book31", week:31, level:4, topic:"Everyday Life", title:"Why the Crossing Sign Matters", phonics:"Author purpose and point of view", math:"Ask and answer questions about data", pages:[
+    "The crossing sign tells walkers when to stop and when to move. Its purpose is to guide people safely.",
+    "A picture of feet helps young readers understand. Clear colors make the message easy to see.",
+    "A class survey shows twelve children walk to the park. Eight ride bikes, and five travel in cars.",
+    "The data helps the town choose where signs are needed most. The author of each sign thinks about every reader.",
+    "Good signs use few words for an important reason. They help people make a safe choice quickly."
+  ]},
+  { id:"book32", week:32, level:4, topic:"Animals", title:"Lia Studies Robins", phonics:"Ask questions and record facts", math:"Place value within 100", pages:[
+    "Lia wants to know what robins eat. She writes her question at the top of a clean page.",
+    "She reads a bird book and asks a nature guide. Both sources say robins eat worms, insects, and fruit.",
+    "Lia sees forty three robins on a spring chart. She writes four tens and three ones.",
+    "She records each fact in her own words. Then she checks that both sources agree.",
+    "Lia shares a short report with her family. One careful question led to many useful facts."
+  ]},
+  { id:"book33", week:33, level:4, topic:"Nature", title:"A Hook from a Burr", phonics:"Read directions and explain steps", math:"Mixed word problems", pages:[
+    "Owen finds a burr stuck to his sock. When he looks closely, he sees tiny hooks.",
+    "He decides to design a paper hook that can hold light cloth. First, he draws three possible shapes.",
+    "Owen cuts eight hooks and uses five in his first test. Three hooks remain.",
+    "The cloth slips, so he changes the curve and tests again. This time, the hook holds.",
+    "Owen explains every step to the class. Nature gave him an idea, but patient testing made it work."
+  ]},
+  { id:"book34", week:34, level:4, topic:"Everyday Life", title:"Nina Edits the Class Note", phonics:"Capitals, punctuation, spelling, and grammar", math:"Review time, shapes, and measurement", pages:[
+    "Nina writes a note about the class rabbit. Her first draft has good ideas, but it needs careful editing.",
+    "She reads each sentence aloud. Nina adds a capital letter and places a period at the end.",
+    "She fixes the spelling of rabbit. Then she checks the time on the clock and writes half past two.",
+    "A small diagram shows the rabbit pen as a rectangle. Nina labels its four sides.",
+    "Now the note is clear, correct, and easy to follow. Nina is proud that revision made her writing stronger."
+  ]},
+  { id:"book35", week:35, level:4, topic:"Nature", title:"Kai Plans a Window Garden", phonics:"Plan, write, revise, and present", math:"Use math to plan and explain", pages:[
+    "Kai plans a small window garden for his family. He begins by measuring the sunny space.",
+    "The ledge is eighteen inches long. Kai chooses three pots that are five inches wide.",
+    "Three pots use fifteen inches. Three inches remain, so the plan will fit.",
+    "Kai writes the planting steps and draws a labeled picture. After one change, the plan is ready.",
+    "He presents the garden to his family and answers their questions. A clear plan helped his idea grow."
+  ]},
+  { id:"book36", week:36, level:4, topic:"Friendship", title:"Look How We Grew", phonics:"Read, write, speak, and reflect", math:"Show growth across first grade math", pages:[
+    "On the first school day, Ava read one small page. She counted slowly and wrote careful letters.",
+    "Each week, Ava practiced even when the work felt hard. Her family noticed every small step.",
+    "Now Ava can read a whole story aloud. She can solve problems and explain how she knows.",
+    "Ava chooses her favorite work for a final folder. The pages show effort, courage, and growth.",
+    "Her family cheers at the year end celebration. Ava is ready for the next bright beginning."
+  ]}
+];
+const blankState = () => ({ version: 3, studentName: "", schoolYear: "", savedAt: "", days: {}, grades: {}, readingLog: [{ date: "", title: "" }], libraryProgress: {}, lastBookId: "", certificateName: "", certificateDate: "" });
+let state = blankState();
+let activeWeek = 0;
+let activeDay = 0;
+let activeBookIndex = 0;
+let activeBookPage = 0;
+
+const $ = id => document.getElementById(id);
+const keyFor = (w, d) => `w${w + 1}d${d + 1}`;
+function getDay(w, d) {
+  const key = keyFor(w, d);
+  if (!state.days[key]) state.days[key] = { attendance: "", complete: [false, false, false, false], workNote: "" };
+  return state.days[key];
+}
+function dayIsDone(w, d) { return getDay(w, d).complete.every(Boolean); }
+function countDone() { let n = 0; for (let w = 0; w < 36; w++) for (let d = 0; d < 5; d++) if (dayIsDone(w, d)) n++; return n; }
+function findNext() {
+  for (let w = 0; w < 36; w++) for (let d = 0; d < 5; d++) if (!dayIsDone(w, d)) return [w, d];
+  return [35, 4];
+}
+function esc(value) { return String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
+function showNotice(message) {
+  const note = $("notice"); note.textContent = message; note.classList.add("show");
+  clearTimeout(showNotice.timer); showNotice.timer = setTimeout(() => note.classList.remove("show"), 3200);
+}
+function showScreen(name) {
+  document.querySelectorAll(".screen").forEach(el => el.classList.toggle("active", el.id === name));
+  document.querySelectorAll(".nav-btn").forEach(el => el.classList.toggle("active", el.dataset.screen === name || (name === "lesson" && el.dataset.screen === "weeks")));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (name === "weeks") renderWeeks();
+  if (name === "library") { $("libraryBrowser").classList.remove("hidden"); $("bookReader").classList.add("hidden"); renderLibrary(); }
+  if (name === "records") renderRecords();
+  if (name === "reports") renderCertificate();
+  updateHome();
+}
+function updateHome() {
+  const done = countDone();
+  const pct = Math.round(done / 180 * 100);
+  $("homeProgress").style.width = pct + "%";
+  $("progressText").textContent = `${done} of 180 days complete`;
+  $("progressPercent").textContent = `${pct} percent`;
+  const next = findNext();
+  $("continueBtn").textContent = done === 180 ? "Open the final lesson" : `${done ? "Continue" : "Begin"} Week ${next[0] + 1}, Day ${next[1] + 1}`;
+}
+function bookProgress(book) {
+  state.libraryProgress ||= {};
+  if (!state.libraryProgress[book.id]) state.libraryProgress[book.id] = { page: 0, complete: false, finishedDate: "" };
+  return state.libraryProgress[book.id];
+}
+function finishedBookCount() { return libraryBooks.filter(book => bookProgress(book).complete).length; }
+function nextLibraryBookIndex() {
+  const next = libraryBooks.findIndex(book => !bookProgress(book).complete);
+  return next < 0 ? libraryBooks.length - 1 : next;
+}
+const bookArtScenes = [
+  `<circle cx="36" cy="33" r="15" fill="#f7d99a"/><circle cx="144" cy="33" r="15" fill="#f7d99a"/><path d="M22 90c4-26 24-31 35-8M158 90c-4-26-24-31-35-8" fill="#d88973"/><circle cx="73" cy="81" r="18" fill="#fff8e8" stroke="#825f45" stroke-width="4"/><circle cx="107" cy="81" r="18" fill="#fff8e8" stroke="#825f45" stroke-width="4"/><path d="M52 57 68 70M128 57l-16 13" stroke="#825f45" stroke-width="5" stroke-linecap="round"/>`,
+  `<path d="M61 34h58l10 57H51z" fill="#d88973" stroke="#79523c" stroke-width="4"/><path d="M70 34c1-15 39-15 40 0" fill="none" stroke="#79523c" stroke-width="5"/><path d="m72 57 14 12 24-27" fill="none" stroke="#fff8e8" stroke-width="5" stroke-linecap="round"/><rect x="28" y="76" width="28" height="18" rx="3" fill="#edc97b"/><circle cx="145" cy="78" r="16" fill="#799a7f"/>`,
+  `<path d="M18 89h144" stroke="#6a805f" stroke-width="5" stroke-linecap="round"/><ellipse cx="55" cy="72" rx="25" ry="17" fill="#e9a8a8"/><ellipse cx="101" cy="70" rx="25" ry="17" fill="#e9a8a8"/><ellipse cx="137" cy="78" rx="20" ry="14" fill="#e9a8a8"/><circle cx="64" cy="68" r="2"/><circle cx="110" cy="66" r="2"/><circle cx="144" cy="75" r="2"/><path d="M33 66 24 57M80 64l-8-10M119 72l-7-8" stroke="#b36d72" stroke-width="5" stroke-linecap="round"/>`,
+  `<rect x="39" y="29" width="102" height="64" rx="12" fill="#fff8e8" stroke="#7a583f" stroke-width="4"/><circle cx="62" cy="50" r="8" fill="#d88973"/><circle cx="90" cy="50" r="8" fill="#e1b85d"/><circle cx="118" cy="50" r="8" fill="#7f9d7b"/><circle cx="76" cy="74" r="8" fill="#6f92a0"/><circle cx="104" cy="74" r="8" fill="#d88973"/><circle cx="132" cy="74" r="8" fill="#e1b85d"/>`,
+  `<path d="M42 86h96v15H42z" fill="#7f9d7b"/><path d="M61 39h58v48H61z" fill="#d88973"/><circle cx="83" cy="62" r="17" fill="#f7d76f"/><path d="m65 39 25-18 29 18" fill="#6f92a0"/><path d="M31 83 52 54l20 29z" fill="#e1b85d"/><rect x="120" y="51" width="28" height="32" rx="3" fill="#c9d9d9"/>`,
+  `<path d="M31 48h24v43H31zM65 35h24v56H65zM99 45h24v46H99zM133 31h18v60h-18z" fill="#d88973" stroke="#7a583f" stroke-width="3"/><path d="M28 48h30M62 35h30M96 45h30M130 31h24" stroke="#fff8e8" stroke-width="5"/><path d="M20 96h140" stroke="#6b8160" stroke-width="5" stroke-linecap="round"/>`,
+  `<path d="M22 88c24-33 45-34 68 0 24-31 46-31 68 0" fill="#9ec8cf"/><path d="M52 63c13-18 31-18 44 0" fill="#fff5df" stroke="#7a583f" stroke-width="4"/><path d="m58 64 12-21 12 21" fill="#e8c184"/><path d="M111 77c10-11 22-11 32 0" fill="#d88973"/><path d="M119 73c5-10 7-16 3-25" fill="none" stroke="#7a583f" stroke-width="4"/>`,
+  `<path d="M25 98h130" stroke="#6b8160" stroke-width="5"/><path d="M64 96V29" stroke="#79523c" stroke-width="5"/><path d="M67 31h50l-25 23 25 22H67z" fill="#d88973"/><circle cx="126" cy="87" r="8" fill="#9d9b83"/><circle cx="146" cy="87" r="8" fill="#9d9b83"/><circle cx="106" cy="87" r="8" fill="#9d9b83"/>`,
+  `<path d="M29 91h122" stroke="#76906e" stroke-width="5"/><path d="M45 64h91l12 27H31z" fill="#e2ba74"/><circle cx="63" cy="61" r="10" fill="#d88973"/><circle cx="112" cy="59" r="10" fill="#6f92a0"/><path d="m72 46 18-19 20 19" fill="#fff4de" stroke="#79523c" stroke-width="3"/><rect x="82" y="49" width="16" height="16" fill="#799a7f"/>`,
+  `<path d="M28 89h124" stroke="#718565" stroke-width="5"/><path d="M49 71c0-24 22-35 41-20 19-16 41-5 41 20" fill="#d3a76c" stroke="#79523c" stroke-width="4"/><path d="M55 72c19-13 51-13 70 0" fill="none" stroke="#fff0ca" stroke-width="6"/><circle cx="58" cy="45" r="9" fill="#d88973"/><circle cx="90" cy="36" r="9" fill="#6f92a0"/><circle cx="123" cy="45" r="9" fill="#799a7f"/>`,
+  `<circle cx="50" cy="38" r="14" fill="#f4c89c"/><path d="M36 91c2-24 9-38 14-38s12 14 14 38" fill="#d88973"/><circle cx="110" cy="70" r="27" fill="none" stroke="#6f92a0" stroke-width="6"/><circle cx="110" cy="70" r="7" fill="#e8c36c"/><path d="M50 62 87 70M130 70h23" stroke="#79523c" stroke-width="4" stroke-linecap="round"/><path d="m143 59 10 11-10 11" fill="none" stroke="#79523c" stroke-width="4"/>`,
+  `<circle cx="51" cy="54" r="17" fill="#f4c89c"/><path d="M34 101c2-27 10-40 17-40s15 13 17 40" fill="#d88973"/><path d="M87 77c21-8 36-25 42-49 9 23 4 45-17 60" fill="#6f92a0"/><path d="M78 78c8-8 15-9 22-4" fill="none" stroke="#79523c" stroke-width="5"/><path d="M128 49c11 2 20 7 27 15" fill="none" stroke="#e7b950" stroke-width="4" stroke-linecap="round"/>`,
+  `<path d="M22 88h136" stroke="#6e865f" stroke-width="5"/><path d="M36 86V58M62 86V49M88 86V61M114 86V45M140 86V55" stroke="#799a7f" stroke-width="5"/><path d="M28 30c22 3 26 20 48 23 21 3 28-12 49-8 15 2 21 11 29 16" fill="none" stroke="#6f92a0" stroke-width="6" stroke-linecap="round"/><path d="M37 59c-9-8-10-17-2-25M115 46c-7-10-5-18 3-25" stroke="#6e865f" stroke-width="4"/>`,
+  `<path d="M21 83c34-23 57-21 72 3 16-25 39-27 67-4" fill="#93c3ca"/><path d="M48 70c18-20 43-20 61 0l-30 22z" fill="#fff4df" stroke="#79523c" stroke-width="4"/><path d="M82 32v50" stroke="#79523c" stroke-width="4"/><path d="m84 34 27 15-27 13z" fill="#d88973"/><path d="M135 38c0-8 12-8 12 0 0 7-6 10-6 15" stroke="#26372f" stroke-width="3" fill="none"/>`,
+  `<path d="M28 93h124" stroke="#799a7f" stroke-width="6"/><path d="M46 92V45h77v47" fill="#d88973" stroke="#79523c" stroke-width="4"/><path d="m39 46 45-24 48 24" fill="#8a6b50"/><rect x="65" y="60" width="39" height="32" fill="#fff3d8"/><path d="M124 72h32M125 67v10M151 67v10" stroke="#6f92a0" stroke-width="4"/><path d="M141 57v29" stroke="#6f92a0" stroke-width="3"/>`,
+  `<rect x="48" y="53" width="84" height="42" rx="8" fill="#fff3df" stroke="#79523c" stroke-width="4"/><path d="M42 56c7-24 47-37 74-18 17 11 16 34 5 42" fill="#d88973"/><path d="M77 50c4-16 22-19 29-5" fill="none" stroke="#79523c" stroke-width="3"/><circle cx="92" cy="68" r="6" fill="#e4bd63"/><path d="M92 68 107 58M92 68 78 81" stroke="#79523c" stroke-width="3"/>`,
+  `<path d="M30 95h120V58H30z" fill="#7f9d7b"/><path d="m26 60 64-38 64 38" fill="#d88973"/><rect x="55" y="66" width="31" height="29" fill="#fff3df"/><path d="M112 94V53" stroke="#6d7d55" stroke-width="5"/><circle cx="112" cy="43" r="14" fill="#e3b953"/><circle cx="132" cy="50" r="12" fill="#e3b953"/><circle cx="94" cy="52" r="12" fill="#e3b953"/>`,
+  `<path d="M19 92h142" stroke="#73896b" stroke-width="5"/><path d="M34 46 66 82l-44 3z" fill="#d88973" stroke="#79523c" stroke-width="3"/><path d="M82 33 119 76l-51 8z" fill="#6f92a0" stroke="#79523c" stroke-width="3"/><path d="M129 51 158 82l-39 5z" fill="#e8bf64" stroke="#79523c" stroke-width="3"/><path d="M65 82c9 13 16 13 23 0M119 76c8 12 14 13 20 3" fill="none" stroke="#79523c" stroke-width="3"/>`,
+  `<path d="M22 95h136" stroke="#6e865f" stroke-width="5"/><path d="M52 95V58M86 95V43M119 95V62" stroke="#799a7f" stroke-width="6"/><circle cx="52" cy="49" r="15" fill="#e8bd65"/><circle cx="86" cy="34" r="17" fill="#d88973"/><circle cx="119" cy="53" r="14" fill="#e8bd65"/><path d="M133 89c0-20 13-29 25-20v20z" fill="#b8aea1"/>`,
+  `<path d="M28 91c18-13 36-13 54 0 18-13 36-13 54 0" fill="#8eb9c0"/><path d="M38 58h39v31H38zM102 58h39v31h-39z" fill="#d3aa73" stroke="#79523c" stroke-width="3"/><ellipse cx="58" cy="68" rx="17" ry="12" fill="#f1dc9d"/><ellipse cx="122" cy="68" rx="17" ry="12" fill="#f1dc9d"/><path d="M47 59c2-12 8-17 11-17s9 5 11 17M111 59c2-12 8-17 11-17s9 5 11 17" fill="#fff3df"/>`,
+  `<path d="M24 94h132" stroke="#6f865f" stroke-width="5"/><path d="M44 94V52M73 94V42M103 94V57M132 94V36" stroke="#799a7f" stroke-width="6"/><path d="M34 58c7-11 15-11 22 0M63 48c7-12 15-12 22 0M92 63c7-11 15-11 22 0M121 42c7-11 15-11 22 0" fill="#e8bd65" stroke="#6f865f" stroke-width="3"/>`,
+  `<ellipse cx="88" cy="87" rx="63" ry="18" fill="#e6bd77"/><path d="M55 74h66l12 17H43z" fill="#d88973"/><path d="M68 73 55 54M87 73l2-24M105 73l17-18" stroke="#6e865f" stroke-width="5"/><path d="M121 43c16-10 30-4 31 10-15 7-27 4-31-10Z" fill="#f2dfae"/><circle cx="141" cy="49" r="2"/>`,
+  `<path d="M20 95h140" stroke="#8795aa" stroke-width="6"/><path d="M98 53c-15-20-38-19-48 1-11 22 11 39 33 35" fill="#d88973"/><circle cx="53" cy="42" r="12" fill="#f4c89c"/><path d="M42 88c2-25 6-35 11-35s10 10 12 35" fill="#6f92a0"/><path d="M111 85c-5-15 1-27 17-34 8 12 3 24-8 32" fill="#fff3df" stroke="#79523c" stroke-width="4"/>`,
+  `<path d="M24 94h132" stroke="#6d865f" stroke-width="6"/><path d="M52 89V54M88 89V43M125 89V57" stroke="#799a7f" stroke-width="5"/><circle cx="52" cy="46" r="13" fill="#e8bd65"/><circle cx="88" cy="35" r="15" fill="#d88973"/><circle cx="125" cy="49" r="13" fill="#e8bd65"/><path d="M43 34c-10-13-20-2-12 7 6 7 15 5 20 1M112 35c-8-14-19-4-13 6 5 7 14 7 21 2" fill="#fff3df" stroke="#79523c" stroke-width="3"/>`,
+  `<path d="M23 93h134" stroke="#71a7ad" stroke-width="7"/><circle cx="46" cy="64" r="14" fill="#f1e0a8"/><path d="M46 78v14M38 86h16" stroke="#79523c" stroke-width="4"/><path d="M77 78c0-19 12-30 27-30s27 11 27 30" fill="#7f9d7b"/><path d="M104 48V32M95 36h18" stroke="#79523c" stroke-width="4"/><path d="M137 78c0-12 9-20 19-20" fill="none" stroke="#6e865f" stroke-width="5"/>`,
+  `<path d="M22 94h136" stroke="#6f865f" stroke-width="6"/><path d="M46 92V52M90 92V38M134 92V56" stroke="#7f9d7b" stroke-width="7"/><circle cx="46" cy="43" r="15" fill="#d88973"/><circle cx="90" cy="29" r="17" fill="#e6bd60"/><circle cx="134" cy="47" r="14" fill="#d88973"/><path d="M26 84c13-12 26-12 39 0M70 76c13-12 26-12 39 0M114 82c12-11 23-11 34 0" fill="#fff3df" stroke="#6f92a0" stroke-width="3"/>`,
+  `<path d="M21 89c30-27 58-24 83 4 20-21 38-22 55-6" fill="#8ab8bf"/><circle cx="52" cy="53" r="10" fill="#f4c89c"/><circle cx="111" cy="50" r="10" fill="#f4c89c"/><path d="M41 88c1-19 5-28 11-28s10 9 11 28M100 86c2-20 6-29 11-29s10 9 12 29" fill="#d88973"/><rect x="71" y="62" width="30" height="22" fill="#fff3df"/><path d="M73 67h19M73 73h15" stroke="#6f92a0" stroke-width="2"/>`,
+  `<path d="M21 87c29-17 48-14 68 6 20-20 42-22 70-6" fill="#83b8c2"/><path d="m38 56 34 26-46 2z" fill="#fff3df" stroke="#79523c" stroke-width="3"/><path d="m92 47 40 33-54 3z" fill="#d88973" stroke="#79523c" stroke-width="3"/><path d="M72 82c8 9 15 10 22 1M132 80c7 7 13 8 20 1" fill="none" stroke="#79523c" stroke-width="3"/>`,
+  `<path d="M24 88c29-12 53-12 73 0 18-13 36-13 59 0" fill="#79aeb8"/><ellipse cx="66" cy="69" rx="26" ry="16" fill="#9b704f"/><ellipse cx="119" cy="68" rx="26" ry="16" fill="#9b704f"/><circle cx="79" cy="64" r="3"/><circle cx="132" cy="63" r="3"/><path d="M43 59 34 47M96 58l-8-13M88 81c7 7 14 7 21 0" stroke="#684b38" stroke-width="4" stroke-linecap="round"/>`,
+  `<rect x="27" y="24" width="126" height="70" rx="5" fill="#d7e8e8" stroke="#79523c" stroke-width="4"/><path d="M90 25v69" stroke="#79523c" stroke-width="3"/><path d="M38 49c18 13 30 14 52 6M91 69c22-16 37-17 53-7" fill="none" stroke="#6f92a0" stroke-width="5"/><ellipse cx="54" cy="84" rx="22" ry="8" fill="#8eb9c0"/><ellipse cx="127" cy="87" rx="16" ry="6" fill="#8eb9c0"/>`,
+  `<path d="M89 96V31" stroke="#79523c" stroke-width="5"/><rect x="61" y="30" width="57" height="43" rx="5" fill="#fff3df" stroke="#79523c" stroke-width="4"/><path d="M72 61 89 45l17 16" fill="none" stroke="#6f92a0" stroke-width="6"/><path d="M31 93h118" stroke="#6e865f" stroke-width="6"/><circle cx="39" cy="77" r="8" fill="#d88973"/><circle cx="139" cy="78" r="8" fill="#e8bd65"/>`,
+  `<circle cx="60" cy="44" r="15" fill="#f4c89c"/><path d="M45 97c2-29 9-45 15-45s14 16 16 45" fill="#d88973"/><rect x="88" y="45" width="54" height="46" rx="4" fill="#fff3df" stroke="#79523c" stroke-width="4"/><path d="M96 55h36M96 65h28M96 75h33" stroke="#6f92a0" stroke-width="3"/><path d="M52 32c10-10 19-10 28 0" fill="none" stroke="#79523c" stroke-width="4"/>`,
+  `<path d="M28 93h124" stroke="#8d9a88" stroke-width="6"/><ellipse cx="70" cy="71" rx="24" ry="13" fill="#d7a173"/><path d="M55 61c-10-16-3-30 10-26 10 3 14 15 9 25" fill="#d7a173"/><circle cx="62" cy="45" r="2"/><path d="M94 31c13 8 19 21 19 40" fill="none" stroke="#79523c" stroke-width="4"/><path d="m105 37 11 2-5 10" fill="none" stroke="#79523c" stroke-width="4"/><rect x="118" y="54" width="31" height="35" fill="#fff3df" stroke="#6f92a0" stroke-width="3"/>`,
+  `<circle cx="51" cy="43" r="14" fill="#f4c89c"/><path d="M37 98c2-29 8-46 14-46s13 17 15 46" fill="#d88973"/><rect x="82" y="31" width="62" height="58" rx="4" fill="#fff3df" stroke="#79523c" stroke-width="4"/><path d="M92 45h40M92 56h31M92 67h38M92 78h26" stroke="#6f92a0" stroke-width="3"/><path d="m78 44 7 7 12-14" fill="none" stroke="#799a7f" stroke-width="4"/>`,
+  `<rect x="28" y="28" width="124" height="68" rx="4" fill="#d7e8e8" stroke="#79523c" stroke-width="4"/><path d="M46 96V65M87 96V53M126 96V69" stroke="#79523c" stroke-width="4"/><path d="M35 65h23l6 31H29zM74 53h26l5 43H69zM114 69h24l6 27h-36z" fill="#d88973"/><path d="M41 53c-7-10 1-20 12-17 8 2 12 10 8 18M81 41c-5-12 5-22 16-16 8 4 9 12 4 20M120 58c-4-9 5-17 13-12 6 4 6 10 2 16" fill="#799a7f"/>`,
+  `<path d="M26 91h128" stroke="#6e865f" stroke-width="6"/><circle cx="51" cy="49" r="14" fill="#f4c89c"/><circle cx="125" cy="50" r="14" fill="#f4c89c"/><path d="M36 94c1-28 8-39 15-39s14 11 15 39M110 94c1-28 8-38 15-38s14 10 15 38" fill="#d88973"/><rect x="70" y="43" width="38" height="47" fill="#fff3df" stroke="#79523c" stroke-width="3"/><path d="M77 52h24M77 61h19M77 70h25" stroke="#6f92a0" stroke-width="2"/><path d="M74 32 89 21l15 11" fill="#e8bd65"/>`
+];
+function coverArt(book, index) {
+  const scene = bookArtScenes[index] || bookArtScenes[0];
+  return `<svg viewBox="0 0 180 120" role="img" aria-label="Illustration for ${esc(book.title)}"><rect width="180" height="120" rx="16" fill="rgba(255,255,255,.18)"/><circle cx="151" cy="24" r="13" fill="#f4c95f" opacity=".8"/><path d="M18 104c36-16 65-13 90 1 21-12 38-13 54-6v21H18z" fill="#789377" opacity=".42"/>${scene}</svg>`;
+}
+function renderLibrary() {
+  const query = $("bookSearch").value.trim().toLowerCase();
+  const level = $("levelFilter").value;
+  const topic = $("topicFilter").value;
+  const nextIndex = nextLibraryBookIndex();
+  const filtered = libraryBooks.filter(book => {
+    const haystack = `${book.title} ${book.topic} ${book.phonics} ${book.math}`.toLowerCase();
+    return (!query || haystack.includes(query)) && (level === "all" || String(book.level) === level) && (topic === "all" || book.topic === topic);
+  });
+  $("libraryProgressText").textContent = `${finishedBookCount()} of ${libraryBooks.length} books finished`;
+  const continueButton = $("continueBook");
+  continueButton.hidden = false;
+  continueButton.textContent = finishedBookCount() === libraryBooks.length ? "Read a favorite again" : `Continue with Book ${nextIndex + 1}`;
+  continueButton.dataset.book = String(nextIndex);
+  $("libraryGrid").innerHTML = filtered.length ? filtered.map(book => {
+    const i = libraryBooks.indexOf(book);
+    const progress = bookProgress(book);
+    const status = progress.complete ? "Finished ✓" : progress.page > 0 ? `Continue at page ${progress.page + 1}` : i === nextIndex ? "Read next" : "Ready to read";
+    const coverClass = ["cover-sage","cover-gold","cover-peach","cover-blue","cover-rose","cover-olive"][i % 6];
+    return `<button class="book-card" data-book="${i}" aria-label="Open Book ${i + 1}, ${esc(book.title)}"><div class="book-cover ${coverClass}">${coverArt(book, i)}</div><div class="book-info"><div class="book-meta"><span>Book ${i + 1}</span><span>Week ${book.week}</span><span>Level ${book.level}</span></div><h3>${esc(book.title)}</h3><p><strong>Learning goals</strong><br>${esc(book.phonics)}<br>${esc(book.math)}</p><span class="book-status">${status}</span></div></button>`;
+  }).join("") : `<p class="empty library-empty">No books match those choices. Try another level or theme.</p>`;
+  document.querySelectorAll("[data-book].book-card").forEach(button => button.addEventListener("click", () => openBook(Number(button.dataset.book))));
+}
+function openBook(index) {
+  activeBookIndex = Math.max(0, Math.min(libraryBooks.length - 1, index));
+  const book = libraryBooks[activeBookIndex];
+  const progress = bookProgress(book);
+  activeBookPage = progress.complete ? 0 : Math.max(0, Math.min(book.pages.length - 1, Number(progress.page) || 0));
+  state.lastBookId = book.id;
+  $("libraryBrowser").classList.add("hidden");
+  $("bookReader").classList.remove("hidden");
+  renderBookReader();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function renderBookReader() {
+  const book = libraryBooks[activeBookIndex];
+  const progress = bookProgress(book);
+  progress.page = activeBookPage;
+  state.lastBookId = book.id;
+  const coverClass = ["cover-sage","cover-gold","cover-peach","cover-blue","cover-rose","cover-olive"][activeBookIndex % 6];
+  $("readerMeta").innerHTML = `<span>Book ${activeBookIndex + 1} of ${libraryBooks.length}</span><span>Week ${book.week}</span><span>Level ${book.level}</span><span>${esc(book.topic)}</span>`;
+  $("readerCover").className = `book-cover reader-cover ${coverClass}`;
+  $("readerCover").innerHTML = coverArt(book, activeBookIndex);
+  $("readerPageLabel").textContent = `Page ${activeBookPage + 1} of ${book.pages.length}`;
+  $("readerTitle").textContent = book.title;
+  const wordsToKnow = book.heart || heartWords[book.week - 1] || [];
+  $("readerWords").innerHTML = `<strong>Words to know:</strong> ${wordsToKnow.map(esc).join(", ")}`;
+  $("readerText").textContent = book.pages[activeBookPage];
+  $("readerProgressFill").style.width = `${(activeBookPage + 1) / book.pages.length * 100}%`;
+  $("previousPage").disabled = activeBookPage === 0;
+  $("nextPage").textContent = activeBookPage === book.pages.length - 1 ? (progress.complete ? "Back to library" : "Finish book") : "Next page";
+}
+function finishBook() {
+  const book = libraryBooks[activeBookIndex];
+  const progress = bookProgress(book);
+  progress.complete = true;
+  const now = new Date();
+  progress.finishedDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  const existing = state.readingLog.find(entry => entry.title === book.title);
+  if (!existing) {
+    const blank = state.readingLog.find(entry => !entry.title && !entry.date);
+    if (blank) { blank.title = book.title; blank.date = progress.finishedDate; }
+    else state.readingLog.push({ title: book.title, date: progress.finishedDate });
+  }
+  showNotice(`${book.title} is finished and added to the reading log. Save your records when you are done.`);
+  renderBookReader();
+}
+function renderWeeks() {
+  $("weekGrid").innerHTML = weeks.map((w, i) => {
+    const dots = Array.from({length:5}, (_, d) => `<i class="dot ${dayIsDone(i,d) ? "done" : ""}"></i>`).join("");
+    return `<button class="week-card" data-week="${i}"><span class="week-num">Week ${i + 1}</span><strong>${w[0]}</strong><span><b>Learning goals</b><br>${w[1]}<br>${w[2]}</span><div class="dots">${dots}</div></button>`;
+  }).join("");
+  document.querySelectorAll(".week-card").forEach(btn => btn.addEventListener("click", () => openLesson(Number(btn.dataset.week), 0)));
+}
+const readingLessons = [
+  { title: "Sam Has Fun", words: ["Sam","map","tap","sit","sun","fun"], passage: "Sam can sit. Sam can tap. A map is in a bag. Sam can get the map. It is fun.", questions: [["Who can sit?","Sam can sit."],["What can Sam tap?","Sam can tap."],["Where is the map?","The map is in a bag."],["Which words rhyme with fun?","Sun and fun rhyme."]] },
+  { title: "A Cat Nap", words: ["cat","nap","mat","sat","bag","tag"], passage: "A cat sat on a mat. The cat had a tan bag. A tag was on the bag. The cat had a nap by the bag.", questions: [["Where did the cat sit?","The cat sat on a mat."],["What color was the bag?","The bag was tan."],["What was on the bag?","A tag was on the bag."],["What did the cat do at the end?","The cat had a nap."]] },
+  { title: "Tim Can Dig", words: ["Tim","kid","sit","dig","big","bin"], passage: "Tim is a kid. Tim can sit. Tim can dig. Tim did a big jig. Tim hid in a bin.", questions: [["Who is the kid?","Tim is the kid."],["What can Tim do?","Tim can dig."],["What kind of jig did Tim do?","Tim did a big jig."],["Where did Tim hide?","Tim hid in a bin."]] },
+  { title: "The Fox on the Log", words: ["fox","log","hot","hop","not","Tom"], passage: "A fox is on a log. Tom can hop to the log. The fox is not hot. Tom and the fox can jog.", questions: [["Where is the fox?","The fox is on a log."],["Who can hop to the log?","Tom can hop to the log."],["Is the fox hot?","No, the fox is not hot."],["What can Tom and the fox do?","Tom and the fox can jog."]] },
+  { title: "Meg and the Hen", words: ["Meg","hen","red","egg","pen","fed"], passage: "Meg has a red hen. The hen is in a pen. Meg can pet the hen. The hen is fed. Meg can get an egg.", questions: [["What color is the hen?","The hen is red."],["Where is the hen?","The hen is in a pen."],["What can Meg do?","Meg can pet the hen."],["What can Meg get?","Meg can get an egg."]] },
+  { title: "The Pup in the Mud", words: ["pup","mud","run","tub","rub","fun"], passage: "Gus the pup can run. Gus is in the mud. Gus has fun. Gus is in the tub. Mum can rub Gus.", questions: [["Who can run?","Gus the pup can run."],["Where is Gus first?","Gus is in the mud."],["Where is Gus next?","Gus is in the tub."],["Who can rub Gus?","Mum can rub Gus."]] },
+  { title: "Chip at the Shop", words: ["ship","shop","chip","thin","that","when"], passage: "Chip and Beth shop for a shell. They check this shell and that shell. Chip has a thin shell. Beth has a red shell.", questions: [["What do Chip and Beth shop for?","They shop for a shell."],["Which shell does Chip have?","Chip has a thin shell."],["Which shell does Beth have?","Beth has a red shell."],["Name two words with sh.","Shop and shell have sh."]] },
+  { title: "The Frog and the Flag", words: ["frog","flag","Brad","drum","flip","grin"], passage: "Brad has a drum. A frog is by a flag. Brad can drum. The frog can hop and flip. Brad can grin.", questions: [["What does Brad have?","Brad has a drum."],["Where is the frog?","The frog is by a flag."],["What can the frog do?","The frog can hop and flip."],["What does Brad do at the end?","Brad can grin."]] },
+  { title: "A Picnic Mix Up", words: ["Beth","bag","frog","rug","grab","grin"], passage: "Beth has a bag. A frog is on the rug. Chip and Beth sit for a picnic. The frog can grab a fig. Beth and Chip grin.", questions: [["Who has the bag?","Beth has the bag."],["What is on the rug?","A frog is on the rug."],["What do Chip and Beth do?","Chip and Beth sit for a picnic."],["What does the frog grab?","The frog grabs a fig."]] },
+  { title: "The Best Gift", words: ["gift","sent","lamp","hand","held","soft"], passage: "Gran sent a small gift. Max felt the box. He held it in his hand. In the box was a red lamp.", questions: [["Who sent the gift?","Gran sent the gift."],["What did Max do to the box?","Max felt the box."],["Where did Max hold it?","Max held it in his hand."],["What was in the box?","A red lamp was in the box."]] },
+  { title: "Jane and the Kite", words: ["Jane","made","kite","wide","shake","time"], passage: "Jane made a kite. She came to a wide hill. Jane gave the kite a shake. The kite went up. Jane had a fine time.", questions: [["What did Jane make?","Jane made a kite."],["Where did Jane go?","Jane went to a wide hill."],["What did Jane do to the kite?","Jane gave the kite a shake."],["Did Jane have a fine time?","Yes, Jane had a fine time."]] },
+  { title: "Rose and the Flute", words: ["Rose","home","flute","tune","note","mule"], passage: "Rose came home with a flute. She chose a tune. A mule came close. Rose made a note. The mule got home late.", questions: [["What did Rose bring home?","Rose brought home a flute."],["What did Rose choose?","Rose chose a tune."],["What came close?","A mule came close."],["What did Rose make?","Rose made a note."]] },
+  { title: "Rain for the Seeds", words: ["rain","day","seed","green","play","leaf"], passage: "Rain fell all day. May can not play. She sees the seeds by the tree. Each seed has a green leaf. May said the rain fed the seeds.", questions: [["Why can May not play?","Rain fell all day."],["Where are the seeds?","The seeds are by the tree."],["What does each seed have?","Each seed has a green leaf."],["What was the main idea?","Rain gives seeds the water they need."]] },
+  { title: "A Goat in the Snow", words: ["goat","road","snow","coat","slow","home"], passage: "Joan met a goat on the road. Snow fell on its coat. Joan spoke in a low tone and led the goat home. The goat ate oats by the stove.", questions: [["What did Joan meet?","Joan met a goat."],["What fell on the goat?","Snow fell on the goat."],["How did Joan speak?","Joan spoke in a low tone."],["Where did the goat eat?","The goat ate by the stove."]] },
+  { title: "The Farm Storm", words: ["farm","barn","storm","corn","Mark","horse"], passage: "A storm came to the farm. Mark ran to the barn. The horse and cat hid in the barn. Rain hit hard, but the barn kept them safe.", questions: [["What came to the farm?","A storm came to the farm."],["Where did Mark run?","Mark ran to the barn."],["Which animals hid in the barn?","The horse and cat hid in the barn."],["What kept them safe?","The barn kept them safe."]] },
+  { title: "A Bird by the Fern", words: ["bird","fern","turn","chirp","first","hurt"], passage: "Fern is on a path. A bird can chirp. At first, Fern can not see it. The bird is by a fern. The bird has a hurt leg. Fern gets help.", questions: [["Where is Fern?","Fern is on a path."],["What can the bird do?","The bird can chirp."],["Where is the bird?","The bird is by a fern."],["What safe choice does Fern make?","Fern gets help."]] },
+  { title: "Sunflower Day", words: ["sunflower","raincoat","cannot","it’s","play yard","inside"], passage: "It’s sunny at the play yard. Ana sees a sunflower by a wall. She cannot reach its top. A raincoat hangs inside her bag, but no rain comes today.", questions: [["Where is Ana?","Ana is at the play yard."],["What does Ana see?","Ana sees a sunflower."],["Why can Ana not reach the top?","The sunflower is tall."],["Which word joins sun and flower?","Sunflower is a compound word."]] },
+  { title: "The Bright Kite", words: ["kite","ship","goat","fern","train","storm"], passage: "A bright kite rose over the green farm. It dipped by the barn, then sailed above a train. When a storm came, Lee pulled the kite down and took it home.", questions: [["Where did the kite rise?","The kite rose over the farm."],["What did it sail above?","It sailed above a train."],["What problem began?","A storm began."],["How did Lee solve the problem?","Lee pulled the kite down and took it home."]] },
+  { title: "The City Garden", words: ["city","center","gem","gentle","giant","space"], passage: "A gentle giant visits the city garden. He sees celery, sage, and a giant sunflower. In the center is a gem shaped stone. The giant sits in a quiet space and sketches it.", questions: [["Who visits the garden?","A gentle giant visits the garden."],["Name one plant he sees.","He sees celery, sage, or a sunflower."],["What is in the center?","A gem shaped stone is in the center."],["What does the giant do last?","The giant sketches the stone."]] },
+  { title: "Boxes for the Ducks", words: ["ducks","boxes","nests","dishes","wishes","ponds"], passage: "Two ducks need nests. Lena sets boxes by the ponds. She fills the boxes with soft grass. The ducks inspect the nests and settle inside.", questions: [["How many ducks need nests?","Two ducks need nests."],["Where does Lena set the boxes?","Lena sets them by the ponds."],["What goes in the boxes?","Soft grass goes in the boxes."],["What do the ducks do last?","The ducks settle inside."]] },
+  { title: "Planting with Dad", words: ["planted","filled","helped","digging","watering","growing"], passage: "Mia helped Dad in the garden. They planted beans and filled a can with water. Mia is watering the soil. Soon, green stems will be growing.", questions: [["Who helped Dad?","Mia helped Dad."],["What did they plant?","They planted beans."],["What is Mia doing now?","Mia is watering the soil."],["What will grow soon?","Green stems will grow soon."]] },
+  { title: "The Picnic Basket", words: ["picnic","basket","napkin","lemon","rabbit","sunset"], passage: "Rosa packs a picnic basket. She adds a lemon, napkins, and a muffin. At sunset, Rosa and her sister sit beside the rabbit garden and share the picnic.", questions: [["What does Rosa pack?","Rosa packs a picnic basket."],["Name three things she adds.","A lemon, napkins, and a muffin."],["When do they eat?","They eat at sunset."],["How many beats are in picnic?","Picnic has two syllables."]] },
+  { title: "The Lost Mitten", words: ["mitten","trail","problem","tracks","find","home"], passage: "Nora lost a mitten on the snowy trail. She felt cold and worried. Her dog Pip sniffed small tracks near a pine. Pip found the mitten. Nora thanked him and put it on.", questions: [["Who is the main character?","Nora is the main character."],["Where does the story happen?","It happens on a snowy trail."],["What is the problem?","Nora lost her mitten."],["How is the problem solved?","Pip finds the mitten."]] },
+  { title: "Busy Bees", words: ["bees","flowers","pollen","hive","food","plants"], passage: "Bees visit flowers to gather nectar and pollen. They carry pollen from flower to flower. This helps many plants make seeds. Bees also take nectar back to the hive for food.", questions: [["What is the main topic?","The main topic is how bees help plants and gather food."],["What do bees gather?","Bees gather nectar and pollen."],["How do bees help plants?","They carry pollen between flowers."],["Where do bees take nectar?","They take nectar to the hive."]] },
+  { title: "How a Frog Grows", words: ["frog","eggs","tadpole","legs","tail","pond"], passage: "Frog Life Cycle. A frog begins as an egg in water. A tadpole hatches with a tail. Next, it grows legs. Its tail gets shorter. Soon, the young frog can hop near the pond.", questions: [["What is the heading?","The heading is Frog Life Cycle."],["What hatches from the egg?","A tadpole hatches from the egg."],["What grows next?","The tadpole grows legs."],["What happens to the tail?","The tail gets shorter."]] },
+  { title: "Our Park Needs Trees", words: ["opinion","park","trees","shade","birds","reason"], passage: "I think our park needs more trees. Trees give cool shade on hot days. They give birds safe places to rest. More trees would make the park better for people and animals.", questions: [["What is the writer’s opinion?","The park needs more trees."],["What is one reason?","Trees give cool shade."],["What is another reason?","Trees give birds places to rest."],["Who would benefit?","People and animals would benefit."]] },
+  { title: "The Boat Race", words: ["float","train","storm","bird","boxes","smiled"], passage: "June made a small boat from a box. She set it in a stream. The boat floated past a fern and under a bridge. It stopped by a stone, so June gently set it free.", questions: [["What did June make?","June made a small boat."],["What was it made from?","It was made from a box."],["Where did it stop?","It stopped by a stone."],["How did June solve the problem?","June gently set the boat free."]] },
+  { title: "The Missing Seed", words: ["first","next","then","finally","seed","sprout"], passage: "First, Eli filled a pot with soil. Next, he looked for his bean seed, but it was gone. Then he found it under the table. Finally, Eli planted the seed and gave it water.", questions: [["What happened first?","Eli filled a pot with soil."],["What was the problem?","The bean seed was missing."],["Where did Eli find it?","He found it under the table."],["What happened finally?","Eli planted and watered the seed."]] },
+  { title: "River Otters", words: ["otters","river","fur","swim","food","pups"], passage: "River otters are mammals that live near water. Their thick fur keeps them warm. Webbed feet help them swim. Otters eat fish, frogs, and insects. Young otters are called pups.", questions: [["What is the topic?","The topic is river otters."],["What keeps otters warm?","Thick fur keeps them warm."],["What helps otters swim?","Webbed feet help them swim."],["What are young otters called?","Pups."]] },
+  { title: "Morning Rain", words: ["drip","tap","silver","soft","window","garden"], passage: "Rain taps softly on the glass. Drip, drop, morning rain. Silver beads slide down the pane. Roots drink deep. Green leaves wake. Soon the sun will shine again.", questions: [["What sound does the rain make?","The rain taps softly."],["What looks like silver beads?","Drops on the window look like silver beads."],["What do the roots do?","The roots drink water."],["Which words rhyme?","Rain, pane, and again rhyme."]] },
+  { title: "Why We Have Signs", words: ["author","reader","signs","safe","message","purpose"], passage: "The author made a sign that says Walk. The author wants readers to cross safely. A picture of feet helps young readers understand the message. The purpose of the sign is to guide people.", questions: [["Who made the sign?","The author made the sign."],["Who reads the sign?","People who cross are the readers."],["Why is there a picture?","The picture helps young readers understand."],["What is the author’s purpose?","The purpose is to guide people safely."]] },
+  { title: "Robin Research", words: ["question","source","robin","nest","worms","facts"], passage: "Lia wants to know what robins eat. She reads a bird book and asks a nature guide. Both sources say robins eat worms, insects, and fruit. Lia records the facts in her own words.", questions: [["What question does Lia ask?","Lia asks what robins eat."],["Which two sources does she use?","She uses a bird book and a nature guide."],["What do robins eat?","Robins eat worms, insects, and fruit."],["How does Lia record the facts?","She writes them in her own words."]] },
+  { title: "A Hook from a Burr", words: ["burr","hook","fabric","design","test","change"], passage: "Owen sees a burr stuck to his sock. He looks closely and finds tiny hooks. Owen designs a paper hook that can hold a light cloth. He tests it, changes the shape, and tests again.", questions: [["What sticks to Owen’s sock?","A burr sticks to his sock."],["What does Owen see on it?","He sees tiny hooks."],["What does Owen design?","He designs a paper hook."],["What does he do after the first test?","He changes the shape and tests again."]] },
+  { title: "Editing the Note", words: ["capital","period","spelling","sentence","edit","clear"], passage: "Nina writes a note about her class pet. She reads each sentence aloud. Nina adds a capital letter, fixes the spelling of rabbit, and places a period at the end. Now her note is clear.", questions: [["What does Nina write about?","Nina writes about the class pet."],["Why does she read aloud?","Reading aloud helps her check the sentences."],["Name one change she makes.","She adds a capital, fixes spelling, or adds a period."],["How is the note after editing?","The note is clear."]] },
+  { title: "My Window Garden", words: ["plan","revise","garden","light","measure","present"], passage: "Kai plans a small window garden. He measures the sunny space and chooses three herbs. Then he writes the steps and draws a labeled plan. After one change, Kai presents the project to his family.", questions: [["What does Kai plan?","Kai plans a window garden."],["What does he measure?","He measures the sunny space."],["How many herbs does he choose?","He chooses three herbs."],["What does Kai do last?","Kai presents the project."]] },
+  { title: "Look How We Grew", words: ["remember","practice","proud","learned","share","celebrate"], passage: "On the first school day, Ava read one small page. She practiced each week and kept trying. Now Ava reads a whole story aloud. She shares her favorite work and feels proud of how much she learned.", questions: [["What did Ava read at first?","Ava read one small page."],["What helped Ava grow?","Weekly practice and effort helped her grow."],["What can Ava do now?","Ava can read a whole story aloud."],["Why does Ava feel proud?","She sees how much she learned."]] }
+];
+
+const heartWords = [
+  ["a","is","in","the","it"],
+  ["a","the","was","on","by"],
+  ["is","a","can","did","in"],
+  ["a","is","on","the","can","and"],
+  ["has","a","the","is","in","can"],
+  ["the","can","is","in","has"],
+  ["and","for","they","this","that"],
+  ["has","a","is","by","can","and"],
+  ["has","a","for","on","then","up"],
+  ["sent","the","held","in","his","was"],
+  ["she","to","a","the","went","gave","had"],
+  ["came","home","with","a","she","chose","made","the"],
+  ["all","she","sees","the","each","said"],
+  ["on","the","fell","spoke","home","ate","by"],
+  ["a","came","to","the","and","in","but","them","safe"],
+  ["is","on","a","at","the","see","it","has","help"],
+  ["it’s","at","the","she","sees","by","cannot","its","inside","her","today","comes"],
+  ["a","over","the","it","above","when","came","pulled","down","home"],
+  ["a","the","he","sees","in","is","shaped","stone","quiet"],
+  ["two","need","she","the","with","soft","inside"],
+  ["helped","they","with","water","will","be"],
+  ["she","a","and","at","her","beside","share"],
+  ["the","on","she","felt","her","small","found","him"],
+  ["to","they","from","this","many","also","for"],
+  ["how","a","as","in","water","with","next","young","near"],
+  ["I","think","our","more","give","would","people"],
+  ["made","a","from","she","in","the","under","by","so"],
+  ["first","a","with","next","for","his","was","under","finally","gave"],
+  ["are","that","live","near","their","them","young","called"],
+  ["softly","the","down","deep","soon","again"],
+  ["the","that","says","wants","to","safely","of","young","people"],
+  ["wants","to","what","she","a","both","say","their","own"],
+  ["a","to","his","he","tiny","that","can","light","again"],
+  ["writes","about","she","each","aloud","adds","of","now","clear"],
+  ["a","he","the","and","three","then","after","one","his","family"],
+  ["on","the","one","she","each","now","a","whole","her","of","how","much"]
+];
+
+const discoveryUnits = [
+  {days:["A learner notices, wonders, listens, and tries. Name one thing you already do well and one skill you want to grow. Draw yourself learning.","A school day has a beginning, a working time, breaks, and an ending. Put four picture cards in a sensible order for your day.","Our brains grow through practice. Try a small puzzle twice and compare what felt easier the second time.","Tools help learners do careful work. Sort a pencil, book, ruler, cup, and ball into learning tools and other objects, then explain each choice.","Tell how asking a question helps you learn. Choose one question from this week and answer it with a drawing and a complete sentence."],quiz:[["What can you do when work feels hard?","Pause, ask for help, and try another way."],["Name one tool used for learning.","Answers include a pencil, book, or ruler."],["Why do learners ask questions?","Questions help us find out and understand."]]},
+  {days:["Families can be large or small and may include relatives, guardians, and people who care for one another. Name the people who help your family.","Every family has routines. Draw a morning routine in three boxes and place the actions in order.","Families share jobs so everyone is cared for. Sort five home jobs by jobs a child can do alone and jobs that need an adult.","Traditions are meaningful actions families repeat. Describe a food, song, story, or celebration that matters in your home.","Make a family care chart with three ways people help one another. Explain why every helpful job matters."],quiz:[["What is a family routine?","Something a family does in a usual order."],["Why do families share jobs?","Shared jobs help care for people and the home."],["What is a tradition?","A meaningful action repeated by a family or group."]]},
+  {days:["Living things need resources and can grow or change. Nonliving things do not eat, grow, or make young. Sort six nearby objects into the two groups.","Plants are living because they grow, use water, and respond to light. Observe a leaf and draw its shape, edge, and veins.","Animals are living because they need food and water, move in some way, and grow. List three signs that a bird is alive.","A seed may look still, but it contains a tiny plant. Soak a bean and compare it with a dry bean without tasting either one.","Choose one living and one nonliving thing. Use three clues to prove which is which."],quiz:[["Name two needs of living things.","Answers include water, food, air, light, and shelter."],["Is a seed living? Why?","Yes. It can grow into a plant when its needs are met."],["What is one sign that an animal is living?","It grows, needs food and water, or moves."]]},
+  {days:["Most plants need light, water, air, nutrients, and space. Match each need to the way it helps a plant.","Roots take in water and hold a plant in place. Examine a root vegetable or picture and sketch the roots below the soil line.","Stems support leaves and move water through the plant. Put celery in colored water with an adult and watch for color moving upward.","Leaves use sunlight, air, and water to help make food for the plant. Compare a broad leaf and a narrow leaf.","Plan a fair plant test. Change only the amount of light or water, then predict what will happen and tell why."],quiz:[["Which plant part takes in water?","The roots."],["What do leaves use to help make food?","Sunlight, air, and water."],["Why should a fair test change only one thing?","So we can tell what caused the result."]]},
+  {days:["A community is a place where people live, work, learn, and help. Name three places people use in your community.","A firefighter responds to fires, while a librarian helps people find information. Match four helpers to the tools they use.","Some helpers produce goods and others provide services. Sort baker, bus driver, carpenter, and nurse by what each provides.","Community workers follow safety rules and train for their jobs. Write two respectful questions you could ask a helper.","Design a community helper badge. Include the job name, one tool, and one sentence about how the worker helps."],quiz:[["What is a community?","A place where people live, work, learn, and help."],["What is a service?","Work someone does to help another person."],["Who helps people find books and information?","A librarian."]]},
+  {days:["Weather tells what the air and sky are like now. Observe the sky, wind, and temperature, then record three details.","A season is a part of the year with common daylight and weather patterns. Name the season and one pattern you notice.","A thermometer measures temperature, a rain gauge measures rain, and a wind vane shows wind direction. Match each tool to its job.","Clouds, wind, rain, and temperature can change during one day. Check the weather twice and compare your notes.","Make a five day weather chart using real observations. State one pattern and one day that was different."],quiz:[["What does weather describe?","What the air and sky are like now."],["Which tool measures temperature?","A thermometer."],["Can weather change during one day?","Yes."]]},
+  {days:["Rules tell what people should do, and fairness means using a rule or choice justly. Compare one home rule and one game rule.","Responsibilities are jobs we are expected to do. Name two responsibilities that match your age and explain who they help.","Fair does not always mean everyone gets the same thing. Discuss why a person with an injury may need different help.","Good rules protect people and make shared spaces work. Invent one classroom rule and give a clear reason for it.","Solve this case: two children want the same book. Offer two fair solutions and choose the strongest one."],quiz:[["What is a responsibility?","A job a person is expected to do."],["Why do groups use rules?","Rules protect people and help groups work."],["Does fair always mean exactly the same?","No. Fair choices meet needs and follow just rules."]]},
+  {days:["A map is a drawing of a place seen from above. Sketch one room and place three large objects where they belong.","Map symbols stand for real features. Create simple symbols for a door, table, tree, and road, then make a key.","Cardinal directions are north, south, east, and west. Face north with adult help and point to the other directions.","A route shows how to travel from one place to another. Draw arrows from a starting point to a destination on your room map.","Give clear directions for a toy to travel across your map. Another person follows them and tells where the route needs improvement."],quiz:[["What does a map show?","A place from above."],["What explains map symbols?","A map key."],["Name the four cardinal directions.","North, south, east, and west."]]},
+  {days:["Review living things, families, helpers, weather, rules, and maps. Make six picture cards and name the idea shown on each.","Choose one earlier observation and improve it with labels, a title, and one new detail.","Use a map key to follow a route, then explain one rule that keeps the trip safe.","Sort twelve review cards into science and community topics. Defend one choice that was difficult.","Complete the quarter test without looking back. After checking answers, correct mistakes in a different color and explain one correction."],quiz:[["Name one need of a plant.","Light, water, air, nutrients, or space."],["What tool tells how hot or cold it is?","A thermometer."],["What is the purpose of a map key?","It explains the symbols."]]},
+  {days:["Light travels from a source such as the Sun, a lamp, or a flame. Identify three safe light sources around you.","We see an object when light reaches it and then enters our eyes. Compare an object in bright light and dim light without staring at a bulb or the Sun.","Transparent materials let most light through, translucent materials let some through, and opaque materials block it. Test paper, clear plastic, and cardboard.","A shadow forms when an object blocks light. Move a toy closer to a lamp and then farther away to compare shadow size.","Build a shadow puppet that makes a clear outline. Explain where the light, object, and shadow must be placed."],quiz:[["What is a light source?","Something that produces light."],["Which material blocks light?","An opaque material."],["How does a shadow form?","An object blocks light."]]},
+  {days:["Sound begins with a vibration, which is a quick back and forth motion. Touch your throat gently while humming and describe what you feel.","A vibrating object can make nearby air vibrate, and the vibration travels to the ear. Pluck a stretched rubber band with adult help and observe it.","Fast vibrations often make higher sounds, while slower vibrations often make lower sounds. Compare two safe sound makers.","Louder sounds use stronger vibrations. Tap a container softly and firmly, keeping the object the same, and compare.","Create a cup or box instrument. Show how to start and stop its vibration, then explain how the sound changes."],quiz:[["What starts a sound?","A vibration."],["What usually makes a sound louder?","A stronger vibration."],["How can you stop a rubber band sound?","Stop the rubber band from vibrating."]]},
+  {days:["The Sun is a star that gives Earth light and heat. Never look directly at it. Mark where sunlight falls through a window.","Earth turns once each day. The side facing the Sun has daylight while the other side has night. Use a ball and lamp to model this.","The Moon does not make its own light. Sunlight reflects from it, letting us see different shapes during the month.","Stars are always in space, but daylight makes most too hard to see. Compare a white crayon mark on white and dark paper.","Make a day and night diagram. Label Earth, sunlight, the day side, and the night side."],quiz:[["What causes day and night?","Earth turns."],["Does the Moon make its own light?","No. It reflects sunlight."],["Why are most stars hard to see in daytime?","The bright sky hides their light."]]},
+  {days:["A leader helps a group make decisions and carry out shared work. List qualities that help a leader serve well.","Laws are rules made by a government. They protect rights, safety, and order. Compare a law with a rule used in your home.","A mayor helps lead a city or town, and a council helps make local decisions. Find one issue a local leader might address.","Citizens can speak, write, vote when old enough, and help their communities. Choose one useful action a child can take now.","Hold a simple council meeting about improving a shared space. State the problem, hear two ideas, and choose a solution fairly."],quiz:[["What is one job of a leader?","To help a group decide and complete shared work."],["Why are laws made?","To protect rights, safety, and order."],["Name one way a child can help the community.","Answers include cleaning a shared area or speaking respectfully about a need."]]},
+  {days:["The United States flag has stars for the states and thirteen stripes for the original colonies. Count the stripe pattern in a picture of the flag.","The bald eagle is a national symbol. Symbols stand for ideas, places, or groups.","The Statue of Liberty represents liberty and welcome. Describe one detail you notice in an accurate picture.","National holidays and shared traditions help people remember events and values. Discuss the difference between remembering history and celebrating.","Choose one American symbol and make an information card with its name, appearance, and meaning."],quiz:[["How many stripes are on the United States flag?","Thirteen."],["What does a symbol do?","It stands for an idea, place, or group."],["Which symbol holds a torch?","The Statue of Liberty."]]},
+  {days:["The past is time that has already happened, while the present is now. Sort six events into past and present.","People long ago met the same needs for food, shelter, work, and travel with different tools. Compare an oil lamp with an electric light.","Photographs, letters, objects, and spoken memories are sources that teach about the past. Identify what each source might reveal.","Some things change and some stay the same. Compare a school item from long ago with one used today.","Create a then and now page about one tool. Include two differences, one similarity, and the source you used."],quiz:[["What does past mean?","Time that has already happened."],["Name one source that teaches about the past.","A photograph, letter, object, or spoken memory."],["Can something have both differences and similarities?","Yes."]]},
+  {days:["A need is necessary for health and safety. A want is something pleasant but not necessary. Sort water, shelter, toy, medicine, and sticker.","Goods are objects people make or grow. Services are work people do for others. Classify bread, haircut, book, and bus ride.","People earn money by working and use it to buy goods and services. Name one job and what that worker provides.","Saving means keeping some money for later. Use ten counters and choose how many to spend and save, then explain.","Plan a pretend five dollar choice using picture prices. Meet a need first, choose whether to buy a want, and keep within the limit."],quiz:[["What is a need?","Something necessary for health or safety."],["Is a haircut a good or a service?","A service."],["What does saving mean?","Keeping money for later."]]},
+  {days:["A community includes homes, businesses, schools, parks, roads, and other shared places. List places near your home without writing a private address.","Urban areas have many buildings and people, suburban areas often have homes near a city, and rural areas have more open land. Compare two settings.","People change places by building, planting, protecting, and cleaning. Find one helpful and one harmful change.","Transportation links people and places. Trace how food might travel from a farm to a market to a home.","Build a model community from paper. Include homes, a service, a safe route, green space, and labels that explain each choice."],quiz:[["Name two places in a community.","Answers include homes, schools, parks, or businesses."],["Which setting usually has more open land?","A rural area."],["How does transportation help a community?","It moves people and goods between places."]]},
+  {days:["Review light, sound, sky patterns, government, symbols, history, needs, and communities. Make a topic web connecting four ideas.","Repeat one science demonstration and write a clearer claim about what happened.","Compare a law, a symbol, and a historical source. Tell the purpose of each.","Use a pretend budget and community map to solve two review challenges.","Complete the quarter test independently. Check every response, repair errors, and save one corrected page for the portfolio."],quiz:[["What causes sound?","A vibration."],["What causes day and night?","Earth turning."],["What is the difference between a good and a service?","A good is an object. A service is work done for someone."]]},
+  {days:["Roots anchor a plant and take in water. Stems support the plant and move water. Sketch both parts and add arrows.","Leaves capture light and exchange gases with the air. Compare the surfaces of two leaves without picking protected plants.","Flowers can help a plant make seeds, and fruits often protect seeds. Safely examine a fruit and locate its seeds.","Plants respond to their surroundings. A stem may bend toward light, while roots grow through soil toward water.","Build a labeled plant model. Explain one job for roots, stem, leaves, flower, fruit, and seed."],quiz:[["Which part anchors a plant?","The roots."],["What often protects seeds?","A fruit."],["Why are leaves important?","They capture light and help the plant make food."]]},
+  {days:["Animal parents and young may look alike or different. Match adult animals with their young: dog and puppy, duck and duckling, frog and tadpole.","Many mammal parents feed milk to their young. Birds usually lay eggs and bring food or guard nests.","Some young animals can move soon after birth, while others need long care. Compare a foal with a baby songbird.","Parents help young survive by feeding, warming, protecting, or teaching. Find one example for two animal groups.","Create an animal family card with the adult name, young name, one shared trait, and one way the young is cared for."],quiz:[["What is a young dog called?","A puppy."],["Do all young animals look exactly like adults?","No."],["Name one way animal parents help young.","They may feed, warm, protect, or teach them."]]},
+  {days:["Traits are features such as eye color, fur pattern, leaf shape, or beak form. List visible traits of two related animals.","Young animals often share traits with parents, but they are not exact copies. Compare two puppies from the same family.","Plants also pass traits to young plants. Seeds from one kind of plant grow into that kind, not a different kind.","Some traits are inherited, while other changes come from experience, care, or surroundings. A learned trick is not an inherited trait.","Make a trait chart for an adult animal and its young. Mark shared traits and differences without guessing unseen traits."],quiz:[["What is a trait?","A feature of a living thing."],["Are young exact copies of their parents?","No."],["Is a learned trick an inherited trait?","No."]]},
+  {days:["A habitat is the place where a living thing gets food, water, shelter, and space. Match a camel, frog, and squirrel to suitable habitats.","Forest habitats have layers of plants and many shelters. Name two forest resources an animal might use.","Deserts receive little rain, so many organisms conserve water or avoid daytime heat. Explain one helpful desert trait.","Ponds provide water, plants, mud, and food. Draw a pond food and shelter scene with three organisms.","Design a habitat for one animal. Label every need and explain why a different habitat would not work as well."],quiz:[["What four things does a habitat provide?","Food, water, shelter, and space."],["Why are many desert animals active at night?","Night is cooler and helps them avoid daytime heat."],["Would a fish live well in a dry desert? Why?","No. It would not have the water it needs."]]},
+  {days:["A landform is a natural shape of Earth surface. Identify mountain, hill, valley, plain, island, and peninsula in pictures.","A mountain is higher and steeper than a hill. A valley is low land between higher areas. Model both with clay or folded paper.","Water features include oceans, rivers, lakes, and ponds. Sort them by moving water and mostly still water.","Physical maps show land and water features with colors and symbols. Use a map key to locate one landform and one body of water.","Create an imaginary island map with a mountain, valley, river, lake, compass rose, symbols, and a key."],quiz:[["What is a valley?","Low land between higher areas."],["Which usually has moving water, a river or lake?","A river."],["What helps explain colors and symbols on a map?","A map key."]]},
+  {days:["Water can be liquid, solid ice, or water vapor in the air. Sort familiar examples into the three forms.","Evaporation happens when liquid water changes into vapor. Mark a small wet spot outdoors and observe it safely over time.","Condensation happens when water vapor cools into liquid drops. Observe drops on the outside of a cold cup.","Rain and snow fall from clouds. Temperature helps decide whether water falls as liquid or ice crystals.","Draw a simple water journey from puddle to vapor to cloud drops and back to the ground. Label each change."],quiz:[["What is evaporation?","Liquid water changing into vapor."],["Where can condensation be seen?","As drops on a cold surface."],["What are two forms of precipitation?","Rain and snow."]]},
+  {days:["Text features help readers find and understand facts. Locate a heading, photograph, caption, and diagram in an informational book.","A heading names a section. Predict what a section will teach by reading only its heading.","A caption explains a picture, while labels name parts in a diagram. Write a useful caption for a real image.","A table of contents lists sections and page numbers. Practice locating a topic without turning every page.","Make one nonfiction page with a heading, accurate diagram, three labels, and a caption that adds information."],quiz:[["What does a heading do?","It names a section."],["What is the job of a caption?","It explains or adds information about a picture."],["Where do you find section page numbers?","In the table of contents."]]},
+  {days:["History is the study of people and events from the past. A reliable account uses evidence from sources.","An important person can be known for service, courage, ideas, leadership, or invention. Choose a verified person from a library source.","An event has a time, place, people, actions, and results. Record those five parts from one child appropriate history text.","Primary sources come from the time being studied, while secondary sources explain the past later. Sort a diary, textbook, old photograph, and modern article.","Create a history card naming one person or event, two verified facts, and the title of the source used."],quiz:[["What does history study?","People and events from the past."],["What is a primary source?","A source created during the time being studied."],["Why should a history fact have a source?","A source gives evidence that the fact is accurate."]]},
+  {days:["Review plant parts, animal families, traits, habitats, landforms, water, text features, and sources. Match eight terms to definitions.","Choose one living thing and connect its traits, parent, habitat, and needs in a labeled web.","Read a short nonfiction page and identify the heading, caption, key detail, and source title.","Build a land and water model, then describe how rain might move across it.","Take the quarter test without help. Use the answer key afterward, correct each missed item, and say what evidence supports the new answer."],quiz:[["What is a habitat?","A place that provides a living thing with what it needs."],["Which plant part carries water upward?","The stem."],["What is a caption?","Words that explain or add information about a picture."]]},
+  {days:["Communities change as people, buildings, transportation, and land use change. Compare two pictures of the same place from different times.","A timeline places events in time order. Put four personal or community events in order without sharing private details.","New transportation can change how quickly people and goods move. Compare walking, trains, cars, and buses.","Communities preserve some places because they tell history or serve people. Identify one place worth caring for and give a reason.","Make a then, now, and next poster showing one community change and one choice that could improve the future."],quiz:[["What does a timeline show?","Events in time order."],["Name one way transportation changes communities.","It changes how quickly people or goods move."],["Why might a community preserve a place?","It may tell history or serve people."]]},
+  {days:["Seasonal changes affect light, temperature, water, and food. List signs of the current season that you can observe.","Some plants become dormant, some lose leaves, and others keep green leaves. Compare two local plants or accurate pictures.","Animals may migrate, hibernate, grow thicker coats, change behavior, or find different foods. Sort four examples.","A behavior helps an animal respond to conditions. Explain why storing food can help when winter food is scarce.","Create a four season wheel for one plant or animal. Show one accurate change in each section."],quiz:[["What does migrate mean?","To move from one region to another, often with the seasons."],["What is hibernation?","A long period of reduced activity that helps some animals survive cold or scarce food."],["Name one way a plant changes with seasons.","It may grow, flower, lose leaves, or become dormant."]]},
+  {days:["Sunlight travels in straight lines until it meets material. Use a flashlight and cardboard with a hole to test alignment safely.","A shadow points away from a light source. Place a toy beside a lamp and mark the shadow direction.","Shadow length changes when the light angle changes. Compare a low flashlight angle with a high one.","Outdoor shadows change as the Sun appears to move across the sky. Trace one safe shadow twice without looking at the Sun.","Use a lamp and toy to model morning, midday, and evening shadows. Draw all three and explain the pattern."],quiz:[["Which way does a shadow point?","Away from the light source."],["When is a model shadow longer, with a low or high light angle?","With a low light angle."],["Why do outdoor shadows change?","The angle of sunlight changes as Earth turns."]]},
+  {days:["People make choices because time, money, and materials are limited. Think of two choices made during a school day.","Choosing one thing can mean giving up another. If you spend five tokens on a book, those tokens cannot also buy a game.","A plan for money is called a budget. Sort pretend income into spending, saving, and giving groups.","Advertising tries to influence choices. Look at a child appropriate package and separate facts from persuasive words.","Plan how to use twelve pretend dollars. Include one need, one saving choice, and a reason for every decision."],quiz:[["Why do people make choices?","Resources such as time and money are limited."],["What is a budget?","A plan for how to use money."],["What is the purpose of advertising?","To influence people to choose or buy something."]]},
+  {days:["Research begins with a focused question that cannot be answered with yes or no. Improve a broad question about robins.","Sources provide information. Books, trusted experts, museums, and reliable educational pages can be sources.","A fact can be checked, while an opinion tells what someone thinks or feels. Sort four statements about an animal.","Researchers record short notes in their own words and keep the source title. Practice turning one sentence into three key words.","Answer the weekly question with three verified facts. Name the sources and explain which fact best answers the question."],quiz:[["What makes a research question focused?","It asks about one clear topic or problem."],["What is a fact?","A statement that can be checked."],["Why write source titles?","So others know where the information came from."]]},
+  {days:["Engineers solve problems by asking, imagining, planning, creating, testing, and improving. Identify a small problem that a tool could solve.","Burrs have tiny hooks, and some plant seeds glide or float. Observe how one natural structure does a job.","A good plan labels materials, parts, and the job of each part. Draw three possible tool shapes before choosing one.","Build a paper model with safe materials. Test it using one clear rule for success and record what happened.","Improve one part after the test. Demonstrate the new model and explain how evidence from testing changed the design."],quiz:[["What should an engineer do after a test fails?","Use the result to improve the design."],["Why label a plan?","Labels show the parts, materials, and jobs."],["What is a rule for success called?","A test criterion or a clear standard for success."]]},
+  {days:["Culture includes shared language, food, art, music, stories, beliefs, and traditions. One person never represents every member of a group.","Traditions can be similar in purpose and different in form. Compare two verified greeting, meal, or celebration traditions respectfully.","Curiosity is respectful when we ask open questions and listen without judging. Rewrite a rude question as a kind one.","Sources about culture should come from people in that culture or careful, reliable references. Check who created a source before using it.","Create a comparison page using two accurate sources. Include one similarity, two differences, and words that avoid claiming everyone is the same."],quiz:[["What can culture include?","Language, food, art, music, stories, beliefs, or traditions."],["Why should we avoid saying every person in a culture is the same?","People within a culture have different lives and choices."],["What makes a question respectful?","It is open, kind, and does not judge."]]},
+  {days:["A capstone brings several skills together to answer a meaningful question. Choose a safe topic from your home, nature, or community.","Write one focused question and gather information from observation plus one reliable source.","Plan a final product such as a booklet, model, poster, or spoken explanation. List materials and the order of work.","Create the product and use reading, writing, math, or drawing to make the explanation clear. Check every label and number.","Present the project. Answer two listener questions, name one strong part, and identify one change you would make next time."],quiz:[["What is the first step in a capstone project?","Choose a topic and focused question."],["Why should a plan list the order of work?","It helps the learner complete steps clearly."],["What should a presenter do when asked a question?","Listen, answer with evidence, or say what still needs research."]]},
+  {days:["Growth means improving through instruction, practice, feedback, and effort. Compare one early work sample with a recent one.","A portfolio is a purposeful collection of work. Choose pieces that show reading, writing, math, discovery, and creativity.","Reflection names what changed and what helped. Finish these thoughts: I can now, practice helped me, and next I want to.","Prepare a short presentation in a clear order. Rehearse speaking loudly enough, facing the listener, and showing evidence.","Complete the final review test, check corrections, present the portfolio, and celebrate specific skills gained across the year."],quiz:[["What is a portfolio?","A purposeful collection of work."],["What is reflection?","Thinking and explaining what changed, what helped, and what comes next."],["What kind of praise best shows growth?","Specific praise that names a skill, strategy, or effort."]]}
+];
+
+const creativePlans = weeks.map((week, w) => {
+  const themes = ["line and shape","color mixing","paper construction","rhythm and beat","balance and coordination","texture rubbing","story movement","cut paper design","sound patterns","observational drawing"];
+  const media = ["pencil and paper","crayons or colored pencils","scrap paper and tape","clapping and body percussion","a clear floor space"];
+  const topic = week[3];
+  const unitName = week[0];
+  return [
+    `For ${unitName}, study ${topic} through ${themes[w % themes.length]}. Make one careful page using ${media[w % media.length]}. Add a title and explain one choice.`,
+    `Build the ${unitName} idea into a sequence of three pictures about ${topic}. Show a beginning, change, and ending, then move like each part for one minute.`,
+    `Shape the ${unitName} work into a small model of ${topic} using clean reusable materials. Test whether it stands, moves, opens, or communicates as planned, then improve one part.`,
+    `Compose a ${unitName} sound pattern for ${topic} with four quiet beats and four strong beats. Perform it twice, then draw symbols that another person could follow.`,
+    `Curate the strongest ${unitName} creative work. Finish details, sign and date it, then give a two sentence gallery talk about the idea and process.`
+  ];
+});
+
+function mathPractice(weekIndex, day) {
+  const n = day + 1;
+  const add = (limit, count = 6) => {
+    const total = Math.min(limit, 6 + day * 2 + (weekIndex % 5));
+    const a = Math.max(1, total - 3 - (day % 2));
+    const b = total - a;
+    const c = Math.max(1, a - 1);
+    const prompts = [
+      [`${a} plus ${b} equals what?`, total],
+      [`Write the missing part: ${a} plus blank equals ${total}.`, b],
+      [`Mia has ${b} shells and finds ${a} more. How many shells does she have now?`, total],
+      [`Is ${c} plus ${b} greater than, less than, or equal to ${total}?`, c + b < total ? "less than" : c + b > total ? "greater than" : "equal to"],
+      [`Show ${total} as two parts in a different way from ${a} and ${b}.`,"Any two parts that total " + total],
+      [`Draw a number line jump for ${b} plus ${a}, then write the answer.`, total]
+    ];
+    return prompts.slice(0, count);
+  };
+  const sub = (limit, count = 6) => {
+    const start = Math.min(limit, 10 + day * 2 + (weekIndex % 3));
+    const take = 2 + (day % 5);
+    const left = start - take;
+    const prompts = [
+      [`${start} take away ${take} equals what?`, left],
+      [`Write the missing part: ${start} take away blank equals ${left}.`, take],
+      [`A box holds ${start} crayons. ${take} are used. How many remain?`, left],
+      [`Which is greater, ${start} take away ${take} or ${start} take away ${take + 1}?`, `${start} take away ${take}`],
+      [`Draw ${start} dots and cross out ${take}. Write how many are left.`, left],
+      [`Check ${start} take away ${take} with an addition equation.`, `${left} plus ${take} equals ${start}`]
+    ];
+    return prompts.slice(0, count);
+  };
+  const sets = {
+    0: [["Write the number after " + (4+n) + ".",5+n],["Write the number before " + (10+n) + ".",9+n],["Count on two from " + (6+n) + ".",8+n],["How many dots are in ● ● ● ● ●?",5],["Which is more, 12 or 8?",12],["Write the number word for 3.","three"]],
+    1: [["Which is greater, 9 or 14?",14],["Which is less, 7 or 11?",7],["How many more is 12 than 9?",3],["Put 6, 16, and 10 in order from least to greatest.","6, 10, 16"],["Is 15 greater than 13?","yes"],["Which number is between 17 and 19?",18]],
+    3: [
+      [["Rosa has 10 shells and gives away 3. How many shells remain?",7],["Eight birds sit on a fence. Two fly away. How many birds remain?",6],["Seven apples are in a bowl. Four are eaten. How many apples remain?",3],["Six toy cars are lined up. One rolls away. How many cars remain?",5],["Nine crayons are in a box. Five are used. How many crayons remain?",4],["Five frogs sit by a pond. Two hop away. How many frogs remain?",3]],
+      [["Ten blocks make a tower. Four fall down. How many blocks remain?",6],["Nine ducks swim in a pond. Two leave. How many ducks remain?",7],["Eight flowers grow in a row. Five are picked. How many flowers remain?",3],["Seven cookies are on a plate. Three are eaten. How many cookies remain?",4],["Six books are on a shelf. Four are taken down. How many books remain?",2],["Five stars are drawn. One is erased. How many stars remain?",4]],
+      [["Ten buttons are in a jar. Six are taken out. How many buttons remain?",4],["Nine fish swim near a rock. Three swim away. How many fish remain?",6],["Eight pencils are in a cup. One is used. How many pencils remain?",7],["Seven leaves are on a branch. Five fall. How many leaves remain?",2],["Six balls are in a basket. Two are taken out. How many balls remain?",4],["Four rabbits play in the grass. Three run home. How many rabbits remain?",1]],
+      [["Nine balloons are tied to a chair. Four float away. How many balloons remain?",5],["Eight acorns are on the ground. Six are gathered. How many acorns remain?",2],["Seven cups are on a table. Two are put away. How many cups remain?",5],["Six boats are in the water. Three sail away. How many boats remain?",3],["Five socks are in a basket. Two are taken out. How many socks remain?",3],["Ten ants walk in a line. Seven leave the line. How many ants remain?",3]],
+      [["Ten beads are on a string. Five are removed. How many beads remain?",5],["Nine bees visit a garden. Six fly away. How many bees remain?",3],["Eight shells are in a pail. Three are returned to the beach. How many shells remain?",5],["Seven paper stars are on a page. One is cut out. How many stars remain?",6],["Six muffins are on a tray. Five are served. How many muffins remain?",1],["Four cats rest on a rug. Two get up. How many cats remain?",2]]
+    ],
+    4: [["How many sides does a triangle have?",3],["How many corners does a square have?",4],["Name a shape with no straight sides.","circle"],["Which shape has 4 equal sides?","square"],["How many sides does a rectangle have?",4],["Draw two triangles. How many sides in all?",6]],
+    5: [["Complete the fact family: 3 plus 5 equals 8, so 8 take away 3 equals what?",5],["Complete the fact family: 4 plus 2 equals 6, so 6 take away 2 equals what?",4],["Name two parts that make 9.","Answers include 4 and 5."],["7 take away 3 equals what?",4],["2 plus 6 equals what?",8],["If 5 plus 4 equals 9, what is 9 take away 5?",4]],
+    6: [["How many tens and ones are in 14?","1 ten and 4 ones"],["Build 17 as ten and ones.","1 ten and 7 ones"],["What number is 1 ten and 9 ones?",19],["Which is greater, 13 or 18?",18],["Write 16 in expanded form.","10 plus 6"],["What is one more than 19?",20]],
+    7: [["How many tens and ones are in 34?","3 tens and 4 ones"],["What number is 4 tens and 2 ones?",42],["Write 27 in expanded form.","20 plus 7"],["Which is greater, 38 or 31?",38],["What is ten more than 22?",32],["Put 19, 41, and 25 in order.","19, 25, 41"]],
+    8: [["8 plus 2 equals what?",10],["10 take away 4 equals what?",6],["Which is greater, 17 or 12?",17],["How many sides does a hexagon have?",6],["What number is 2 tens and 3 ones?",23],["Write the number after 29.",30]],
+    9: add(10),
+    10: add(20),
+    11: sub(20),
+    12: [["Double 3.",6],["Double 6.",12],["7 plus 8 equals what?",15],["5 plus 6 equals what?",11],["Double 9.",18],["8 plus 9 equals what?",17]],
+    13: [["Make ten to solve 8 plus 5.",13],["Make ten to solve 9 plus 6.",15],["7 needs how many more to make 10?",3],["6 plus 8 equals what?",14],["9 plus 4 equals what?",13],["10 plus 7 equals what?",17]],
+    14: [["A pencil is 8 cubes long. A crayon is 5 cubes long. Which is longer?","the pencil"],["How much longer is 9 inches than 6 inches?","3 inches"],["Put 4 inches, 10 inches, and 7 inches in order.","4 inches, 7 inches, 10 inches"],["A ribbon is 12 cubes long. Cut off 3 cubes. How long is it now?","9 cubes"],["Which tool measures length, a ruler or a clock?","a ruler"],["Two books are 6 inches each. Are their lengths equal?","yes"]],
+    15: [["The minute hand points to 12 and the hour hand points to 4. What time is it?","4 o’clock"],["The minute hand points to 6 and the hour hand is between 2 and 3. What time is it?","2:30"],["What time is half an hour after 7:00?","7:30"],["What time is one hour after 9:30?","10:30"],["Which comes first, 6:00 or 6:30?","6:00"],["How many minutes are in half an hour?",30]],
+    16: [["A graph shows 4 cats and 7 dogs. Which has more?","dogs"],["How many animals are there in all?",11],["How many more dogs than cats are there?",3],["A graph shows 5 red votes, 2 blue votes, and 3 green votes. Which has the fewest?","blue"],["How many votes are there in all?",10],["How many more red votes than green votes?",2]],
+    17: [["14 take away 6 equals what?",8],["7 plus 8 equals what?",15],["What time is half past 3?","3:30"],["Which is longer, 9 inches or 6 inches?","9 inches"],["A graph has 8 suns and 5 clouds. How many more suns?",3],["What number is 4 tens and 6 ones?",46]],
+    18: [[`${20+n} plus ${2+n} equals what?`,22+2*n],[`${31+n} plus ${3+n} equals what?`,34+2*n],[`${42+n} plus 5 equals what?`,47+n],[`${16+n} plus 3 equals what?`,19+n],[`${50+n} plus 7 equals what?`,57+n],[`${24+n} plus 4 equals what?`,28+n]],
+    19: [["70 take away 20 equals what?",50],["50 take away 30 equals what?",20],["90 take away 40 equals what?",50],["60 take away 10 equals what?",50],["80 take away 50 equals what?",30],["40 take away 40 equals what?",0]],
+    20: [["Which is greater, 48 or 84?",84],["Which is less, 36 or 63?",36],["Put 27, 72, and 52 in order.","27, 52, 72"],["Is 59 greater than 61?","no"],["Which number has more tens, 43 or 38?",43],["What number is between 74 and 76?",75]],
+    21: [["A chart shows 3 sunny days, 2 rainy days, and 1 cloudy day. How many days are shown?",6],["Which weather happened most?","sunny"],["How many more sunny days than cloudy days?",2],["Add 2 windy days. How many days are shown now?",8],["Which happened least?","cloudy"],["How many rainy and cloudy days are there together?",3]],
+    22: [["Put 2 triangles together to make a square. How many triangles did you use?",2],["Split a rectangle into 2 equal parts. What is each part called?","a half"],["How many small squares can make a larger square in a 2 by 2 arrangement?",4],["Which two shapes can join to make a rectangle?","Answers include two squares."],["How many corners do 2 separate triangles have in all?",6],["Can a circle be made from straight sided triangles with no gaps?","no"]],
+    23: [["A sandwich is cut into 2 equal parts. What is each sandwich part called?","a half"],["A square is split into 4 equal parts. What is each square part called?","a fourth"],["How many fourths make one whole?",4],["How many halves make one whole?",2],["Which is larger, one half or one fourth?","one half"],["Mia eats one of four equal pieces. What fraction did she eat?","one fourth"]],
+    24: [["What time is half past 8?","8:30"],["What time is one hour after 11:00?","12:00"],["Which coin is worth 1 cent?","penny"],["Which coin is worth 5 cents?","nickel"],["How many pennies have the same value as one nickel?",5],["You have 2 nickels. How many cents is that?",10]],
+    25: [["3 plus 4 plus 5 equals what?",12],["6 plus 2 plus 7 equals what?",15],["1 plus 8 plus 9 equals what?",18],["5 plus 5 plus 4 equals what?",14],["2 plus 6 plus 6 equals what?",14],["7 plus 3 plus 8 equals what?",18]],
+    26: [["What number is 6 tens and 2 ones?",62],["Name a shape with 3 sides.","triangle"],["One half of 10 is what?",5],["A graph has 9 birds and 6 fish. How many more birds?",3],["37 plus 5 equals what?",42],["What time is half past 1?","1:30"]],
+    27: [["Write the number after 99.",100],["Write the number before 120.",119],["Count by tens from 70 to 110.","70, 80, 90, 100, 110"],["Which is greater, 108 or 98?",108],["How many tens and ones are in 115?","11 tens and 5 ones"],["Count on five from 104.",109]],
+    28: [...add(20,3), ...sub(20,3)],
+    29: [["A spoon is 6 cubes long and a fork is 8 cubes long. Which is longer?","the fork"],["How much longer is the fork?","2 cubes"],["A book is 9 inches long. A card is 4 inches long. What is their total length?","13 inches"],["Which is shortest, 3 inches, 7 inches, or 5 inches?","3 inches"],["A ribbon is 15 inches. Cut off 6 inches. How much remains?","9 inches"],["Put 12, 5, and 9 inches in order.","5 inches, 9 inches, 12 inches"]],
+    30: [["A survey has 6 apple votes, 4 pear votes, and 8 peach votes. Which fruit has the most?","peach"],["Which fruit has the fewest?","pear"],["How many votes are there in all?",18],["How many more peach votes than pear votes?",4],["If apple gets 2 more votes, how many will it have?",8],["Will apple and peach then be equal?","yes"]],
+    31: [["What number is 7 tens and 8 ones?",78],["Write 64 in expanded form.","60 plus 4"],["What is ten more than 53?",63],["What is ten less than 92?",82],["48 plus 7 equals what?",55],["Which is greater, 69 or 96?",96]],
+    32: [["There are 8 birds. 5 more land. How many birds are there?",13],["Mara has 17 shells and gives away 6. How many remain?",11],["A box has 4 red blocks, 3 blue blocks, and 6 green blocks. How many blocks?",13],["Ben needs 20 seeds. He has 12. How many more does he need?",8],["Two bags hold 9 apples each. How many apples in all?",18],["A path is 15 steps long. Leo walks 7 steps. How many steps remain?",8]],
+    33: [["What time is 30 minutes after 5:00?","5:30"],["How many sides do a square and triangle have in all?",7],["A rope is 14 feet long. Cut off 5 feet. How much remains?","9 feet"],["Which is longer, 11 inches or 8 inches?","11 inches"],["How many fourths make one whole?",4],["What time is one hour before 10:30?","9:30"]],
+    34: [["A garden has 3 rows of 5 plants. Count all the plants.",15],["The plan needs 20 stones. You have 13. How many more are needed?",7],["A board is 18 inches long. Mark a point at 10 inches. How much length remains?","8 inches"],["Choose the greater budget, 45 points or 54 points.","54 points"],["Add the plan numbers 6, 7, and 4.",17],["Share 12 tiles in 2 equal groups. How many are in each group?",6]],
+    35: [["9 plus 8 equals what?",17],["18 take away 7 equals what?",11],["What number is 9 tens and 4 ones?",94],["One half of 16 is what?",8],["What time is half past 6?","6:30"],["A graph shows 10 books and 7 games. How many more books?",3]]
+  };
+  const fullSet = weekIndex === 3 ? sets[3][day] : (sets[weekIndex] || add(10));
+  const generatedWeeks = [9, 10, 11, 18, 28];
+  if (day === 4 || weekIndex === 3 || generatedWeeks.includes(weekIndex)) return fullSet;
+  const pair = day < 3 ? fullSet.slice(day * 2, day * 2 + 2) : [];
+  const goal = weeks[weekIndex][2];
+  const application = [
+    [`Build or draw one new example of ${goal}. Label every number, shape, or unit you use.`,"Check that the model matches the skill and every label is accurate."],
+    [`Make a second example of ${goal} that has a different answer. Solve it and explain each step aloud.`,"The new example should be mathematically correct and use a clear strategy."],
+    [`Write a short real life story that uses ${goal}. Circle the information needed to solve it.`,"The story should include enough information, a clear question, and a correct solution."],
+    [`Teach ${goal} to a toy or family member. Include one model, one example, and one way to check the answer.`,"A complete explanation names the skill, shows a correct example, and checks the result."],
+    [`Find and correct a pretend mistake involving ${goal}. Tell what went wrong and show the corrected work.`,"The correction should identify the error and give a valid answer or model."]
+  ];
+  return [...pair, application[(weekIndex + day) % application.length], application[(weekIndex + day + 2) % application.length], application[(weekIndex + day + 4) % application.length]];
+}
+
+function languageArtsLaunch(weekIndex, skill, wordChips, heartChips) {
+  if (weekIndex <= 21) return `<div class="lesson-focus"><strong>Teach: ${esc(skill)}</strong>Say the focus sound, word part, or syllable pattern clearly. Model one word, then guide the learner through the rest.</div><div class="practice-box"><h4>Word study</h4>${wordChips}<ol class="task-steps"><li>Read each word carefully from beginning to end.</li><li>Sort the words by a sound, spelling, or syllable feature.</li><li>Choose two words and use each in an oral sentence.</li></ol></div><div class="practice-box"><h4>Words remembered by heart</h4>${heartChips}<p>Read each word, spell it aloud, cover it, and write it from memory.</p></div>`;
+  const launches = {
+    22: ["Study how a story is built", "Name the characters, setting, problem, and solution in a familiar story. Explain how each part helps the reader understand what happens."],
+    23: ["Find the main idea", "Read a short nonfiction paragraph. State what it is mostly about, then point to two details that support the main idea."],
+    24: ["Use nonfiction text features", "Preview a heading, caption, and diagram before reading. Explain what each feature helps the reader learn or locate."],
+    25: ["Build an opinion", "State one clear opinion about a familiar topic. Give two different reasons that support it, then add a closing sentence."],
+    26: ["Review reading and writing skills", "Read a short selection smoothly, identify its main idea or story structure, and support each answer with a detail from the text."],
+    27: ["Plan a true sequence", "Choose one small event. Tell it in order with first, next, then, and finally before writing the opening sentence."],
+    28: ["Organize facts", "Choose one topic and list three accurate facts. Group related facts together, then plan a topic sentence and closing sentence."],
+    29: ["Hear rhythm and imagery", "Read the poem aloud twice. Notice repeated sounds, rhythm, and words that help the reader see, hear, or feel the scene."],
+    30: ["Think about author and reader", "Ask why the author created the text, what the author wants the reader to understand, and which details reveal that purpose."],
+    31: ["Begin with a research question", "Write one focused question. Name two trustworthy places to find facts, then record brief notes in your own words."],
+    32: ["Read and explain directions", "Read every step before starting. Circle action words, put the steps in order, and explain how you will know the task is complete."],
+    33: ["Edit with a purpose", "Read one sentence aloud. Check its capital letter, punctuation, spelling, and grammar, then explain one change that makes it clearer."],
+    34: ["Plan the capstone", "Choose a focused topic, decide what the reader needs to know, and make a simple plan for drafting, revising, and presenting the work."],
+    35: ["Reflect on growth", "Compare an early reading or writing sample with a recent one. Name one skill that grew and one example that proves it."]
+  };
+  const launch = launches[weekIndex] || ["Practice today’s language skill", `Introduce ${skill} with one clear example, then ask the learner to explain the idea in their own words.`];
+  return `<div class="lesson-focus"><strong>${esc(launch[0])}</strong>${esc(launch[1])}</div><div class="practice-box"><h4>Key words for today</h4>${wordChips}<ol class="task-steps"><li>Read each word and explain how it connects to the lesson.</li><li>Use two words while talking about a text, plan, or piece of writing.</li><li>Write one complete sentence that shows today’s skill.</li></ol></div><div class="practice-box"><h4>Words remembered by heart</h4>${heartChips}<p>Read each word, spell it aloud, cover it, and write it from memory.</p></div>`;
+}
+function readingPractice(weekIndex, day) {
+  const lesson = readingLessons[weekIndex];
+  const skill = weeks[weekIndex][1];
+  const wordChips = `<div class="word-bank">${lesson.words.map(word => `<span>${esc(word)}</span>`).join("")}</div>`;
+  const heartChips = `<div class="word-bank">${heartWords[weekIndex].map(word => `<span>${esc(word)}</span>`).join("")}</div>`;
+  if (day === 0) return languageArtsLaunch(weekIndex, skill, wordChips, heartChips);
+  if (day === 1) return `<div class="lesson-focus"><strong>Model a first reading</strong>Preview the title. Ask what the passage may be about, then read one sentence aloud while pointing out phrasing and punctuation.</div><section class="reading-passage"><h4>${esc(lesson.title)}</h4><p>${esc(lesson.passage)}</p></section><div class="practice-box"><h4>Guided response</h4><ol>${lesson.questions.slice(0,2).map(pair => `<li>${esc(pair[0])}</li>`).join("")}</ol><details class="answer-key"><summary>Show guided answers</summary><ol>${lesson.questions.slice(0,2).map(pair => `<li>${esc(pair[1])}</li>`).join("")}</ol></details></div>`;
+  if (day === 2) return `<div class="lesson-focus"><strong>Build accuracy and fluency</strong>Read ${esc(lesson.title)} once slowly for correct words. Read it a second time in smooth phrases, pausing at punctuation.</div><section class="reading-passage"><h4>${esc(lesson.title)}</h4><p>${esc(lesson.passage)}</p></section><div class="practice-box"><h4>Writing connection</h4><ol class="task-steps"><li>Copy one sentence neatly and circle its capital letter and ending mark.</li><li>Write a new sentence using two words from the word bank.</li><li>Read both sentences aloud and correct anything that does not sound right.</li></ol></div>`;
+  if (day === 3) return `<div class="lesson-focus"><strong>Think beyond the words</strong>Read independently or with light support. Return to the passage for evidence instead of guessing.</div><section class="reading-passage"><h4>${esc(lesson.title)}</h4><p>${esc(lesson.passage)}</p></section><div class="practice-box"><h4>Close reading</h4><ol>${lesson.questions.slice(2).map(pair => `<li>${esc(pair[0])}</li>`).join("")}</ol><p>Then retell the beginning, middle, and ending, or state the topic and two key details.</p><details class="answer-key"><summary>Show close reading answers</summary><ol>${lesson.questions.slice(2).map(pair => `<li>${esc(pair[1])}</li>`).join("")}</ol></details></div>`;
+  const label = [8,17,26,35].includes(weekIndex) ? "Quarter reading test" : "Weekly reading quiz";
+  const checkBook = libraryBooks[weekIndex];
+  const checkText = checkBook.pages.join(" ");
+  const checkQuestions = [
+    [`Who or what is ${checkBook.title} mainly about?`, `The response should name the main person, animal, place, or idea and match the selection.`],
+    ["Write one event or fact from the beginning.", "Accept one accurate beginning detail stated in the learner’s own words."],
+    ["Write one event or fact from the ending.", "Accept one accurate ending detail stated in the learner’s own words."],
+    [`Find one example of ${skill} or explain how the selection uses that skill.`, `Accept an accurate example or explanation supported by the selection.`]
+  ];
+  return `<div class="lesson-focus"><strong>${label}</strong>This is a new selection. Read without coaching. The learner may look back at the text, but should answer independently before the key is opened.</div><section class="reading-passage"><h4>${esc(checkBook.title)}</h4><p>${esc(checkText)}</p></section><div class="practice-box"><h4>Answer all four</h4><ol>${checkQuestions.map(pair => `<li>${esc(pair[0])}</li>`).join("")}</ol><details class="answer-key"><summary>Open the reading answer key</summary><ol>${checkQuestions.map(pair => `<li>${esc(pair[1])}</li>`).join("")}</ol></details></div>`;
+}
+
+function mathPracticeHtml(weekIndex, day) {
+  const allProblems = mathPractice(weekIndex, day);
+  const goal = weeks[weekIndex][2];
+  const isReview = [8,17,26,35].includes(weekIndex);
+  const phaseNames = ["Learn the idea", "Practice with support", "Choose a strategy", "Apply and explain", isReview ? "Quarter math test" : "Weekly math quiz"];
+  const directions = [
+    `Model ${goal} with small objects or a quick drawing. Work the first problem together, then let the learner solve the rest.`,
+    `Review yesterday’s model for ${goal}. Ask the learner to name the numbers, operation, or shape before solving.`,
+    `Let the learner choose objects, a drawing, a number line, or an equation for ${goal}. Require one spoken explanation.`,
+    `Use today’s problems as independent practice. Check the work by trying a second strategy or using the inverse operation when it fits.`,
+    `Give this check without coaching. Read a direction aloud if needed, but let the learner choose and complete the math.`
+  ];
+  return `<div class="lesson-focus"><strong>${phaseNames[day]}: ${esc(goal)}</strong>${directions[day]}</div><div class="practice-box"><h4>${day === 4 ? "Math questions" : "Worked practice"}</h4><ol>${allProblems.map(pair => `<li>${esc(pair[0])}</li>`).join("")}</ol><details class="answer-key"><summary>${day === 4 ? `Open the ${isReview ? "math test" : "math quiz"} answer key` : "Show math answers"}</summary><ol>${allProblems.map(pair => `<li>${esc(pair[1])}</li>`).join("")}</ol></details></div>`;
+}
+
+function lessonContent(weekIndex, day) {
+  const unit = discoveryUnits[weekIndex];
+  const testLabel = [8,17,26,35].includes(weekIndex) ? "Quarter discovery test" : "Weekly discovery quiz";
+  const discoveryHtml = day < 4
+    ? `<div class="lesson-focus"><strong>Discovery lesson ${day + 1}</strong>${esc(unit.days[day])}</div><div class="practice-box"><h4>Show what you learned</h4><p>${esc(["Draw and label the most important idea from today.","Tell one new fact and one question you still have.","Compare two examples using because in your explanation.","Make a small model, chart, or diagram that proves your understanding."][day])}</p></div>`
+    : `<div class="lesson-focus"><strong>${testLabel}</strong>${esc(unit.days[4])}</div><div class="practice-box"><h4>Answer independently</h4><ol>${unit.quiz.map(pair => `<li>${esc(pair[0])}</li>`).join("")}</ol><details class="answer-key"><summary>Open the discovery answer key</summary><ol>${unit.quiz.map(pair => `<li>${esc(pair[1])}</li>`).join("")}</ol></details></div>`;
+  const creativeTitles = ["Observe and make", "Sequence and move", "Build and improve", "Compose a sound pattern", "Finish and present"];
+  const unitName = weeks[weekIndex][0];
+  const movement = [`Close the ${unitName} studio time with five slow reaches and five cross body taps.`,`Move through the ${unitName} picture sequence twice, using a clear beginning pose and ending pose.`,`Carry the ${unitName} model across the room with careful balance, then return it to the work area.`,`Step the ${unitName} beat while clapping it, then repeat the pattern more softly.`,`Stand tall for the ${unitName} gallery talk, then take a two minute choice movement break.`];
+  const creativeHtml = `<div class="lesson-focus"><strong>${creativeTitles[day]}</strong>${esc(creativePlans[weekIndex][day])}</div><div class="practice-box"><h4>Movement</h4><p>${esc(movement[day])}</p></div>`;
+  return [readingPractice(weekIndex, day), mathPracticeHtml(weekIndex, day), discoveryHtml, creativeHtml];
+}
+function openLesson(w, d) {
+  activeWeek = w; activeDay = d;
+  $("lessonHeading").textContent = `Week ${w + 1}: ${weeks[w][0]}`;
+  $("lessonSummary").textContent = `Language Arts: ${weeks[w][1]}. Math: ${weeks[w][2]}. Discovery: ${weeks[w][3]}.`;
+  renderDay(); showScreen("lesson");
+}
+function renderDay() {
+  const day = getDay(activeWeek, activeDay);
+  $("dayHeading").textContent = `Day ${activeDay + 1}`;
+  const habits = ["Begin with a brief read aloud. Keep pencil grip relaxed and movements slow.","Read for fifteen minutes. Pause once to retell what happened.","Practice handwriting for five careful minutes. Stretch fingers before writing.","Read aloud with expression. Take a movement break before independent work.","Complete the weekly check after the lessons. Keep the answer keys closed until the end."];
+  $("dailyHabit").textContent = habits[activeDay];
+  const isQuarterTest = [8,17,26,35].includes(activeWeek);
+  $("weekCheckBanner").innerHTML = activeDay === 4 ? `<div class="check-banner"><strong>${isQuarterTest ? "Quarter review test" : "Weekly quiz"}</strong><span>Language Arts, math, and discovery each include an independent check with a parent answer key.</span></div>` : "";
+  $("dayTabs").innerHTML = Array.from({length:5}, (_, i) => `<button class="day-tab ${i === activeDay ? "active" : ""} ${dayIsDone(activeWeek,i) ? "done" : ""}" data-day="${i}">Day ${i + 1}${i === 4 ? " • Quiz" : ""}</button>`).join("");
+  document.querySelectorAll(".day-tab").forEach(btn => btn.addEventListener("click", () => { activeDay = Number(btn.dataset.day); renderDay(); window.scrollTo({top:0, behavior:"smooth"}); }));
+  $("attendanceChoices").innerHTML = ["Present","Absent","Excused"].map(v => `<button class="choice ${day.attendance === v ? "active" : ""}" data-value="${v}" aria-pressed="${day.attendance === v}">${v}</button>`).join("") + `<button class="choice" data-clear-attendance ${day.attendance ? "" : "disabled"}>Clear attendance</button>`;
+  document.querySelectorAll("[data-value]").forEach(btn => btn.addEventListener("click", () => {
+    if (day.attendance === btn.dataset.value) return;
+    day.attendance = btn.dataset.value;
+    renderDay();
+    updateAll();
+  }));
+  document.querySelector("[data-clear-attendance]").addEventListener("click", () => {
+    if (!day.attendance) return;
+    day.attendance = "";
+    renderDay();
+    updateAll();
+  });
+  const content = lessonContent(activeWeek, activeDay);
+  $("lessonList").innerHTML = subjects.map((subject, i) => `<article class="lesson-card"><div class="lesson-title"><h3>${subject}</h3><button data-subject="${i}" class="${day.complete[i] ? "done" : ""}">${day.complete[i] ? "Complete ✓" : "Mark complete"}</button></div><div class="lesson-body">${content[i]}</div></article>`).join("");
+  document.querySelectorAll("[data-subject]").forEach(btn => btn.addEventListener("click", () => { const i = Number(btn.dataset.subject); day.complete[i] = !day.complete[i]; renderDay(); updateAll(); }));
+  $("workNote").value = day.workNote;
+  $("markDayBtn").textContent = dayIsDone(activeWeek, activeDay) ? "Day complete ✓" : "Mark the whole day complete";
+  $("nextDayBtn").textContent = activeWeek === 35 && activeDay === 4 ? "View family records" : "Go to the next day";
+}
+function updateAll() { updateHome(); renderWeeks(); }
+function renderRecords() {
+  let present = 0, notes = 0;
+  Object.values(state.days).forEach(d => { if (d.attendance === "Present") present++; if ((d.workNote || "").trim()) notes++; });
+  $("daysDoneStat").textContent = countDone(); $("presentStat").textContent = present; $("workStat").textContent = notes; $("libraryStat").textContent = finishedBookCount();
+  $("gradeList").innerHTML = `<div class="grade-row header"><span>Week</span><span>Language</span><span>Math</span><span>Discovery</span></div>` + weeks.map((w, i) => {
+    const g = state.grades[i + 1] || {};
+    return `<div class="grade-row"><strong>Week ${i + 1}<br><small>${w[0]}</small></strong><input inputmode="numeric" type="number" min="0" max="100" aria-label="Language Arts score for week ${i + 1}" data-grade="${i + 1}" data-sub="language" value="${esc(g.language ?? "")}" placeholder="Score"><input inputmode="numeric" type="number" min="0" max="100" aria-label="Math score for week ${i + 1}" data-grade="${i + 1}" data-sub="math" value="${esc(g.math ?? "")}" placeholder="Score"><input inputmode="numeric" type="number" min="0" max="100" aria-label="Discovery score for week ${i + 1}" data-grade="${i + 1}" data-sub="discovery" value="${esc(g.discovery ?? "")}" placeholder="Score"></div>`;
+  }).join("");
+  document.querySelectorAll("[data-grade]").forEach(input => input.addEventListener("input", () => {
+    const week = input.dataset.grade; state.grades[week] ||= {}; state.grades[week][input.dataset.sub] = input.value === "" ? "" : Math.max(0, Math.min(100, Number(input.value)));
+  }));
+  renderReadingLog();
+}
+function renderReadingLog() {
+  if (!Array.isArray(state.readingLog) || state.readingLog.length === 0) state.readingLog = [{ date: "", title: "" }];
+  $("readingLog").innerHTML = state.readingLog.map((entry, i) => `<div class="reading-row"><div class="field"><label for="bookDate${i}">Date</label><input id="bookDate${i}" type="date" aria-label="Reading date ${i + 1}" data-book-date="${i}" value="${esc(entry.date || "")}"></div><div class="field"><label for="bookTitle${i}">Book title</label><input id="bookTitle${i}" data-book-title="${i}" value="${esc(entry.title || "")}" placeholder="Type the book title"></div><button class="btn ghost" data-remove-book="${i}" aria-label="Remove book ${i + 1}">Remove</button></div>`).join("");
+  document.querySelectorAll("[data-book-date]").forEach(input => input.addEventListener("input", () => { state.readingLog[Number(input.dataset.bookDate)].date = input.value; }));
+  document.querySelectorAll("[data-book-title]").forEach(input => input.addEventListener("input", () => { state.readingLog[Number(input.dataset.bookTitle)].title = input.value; }));
+  document.querySelectorAll("[data-remove-book]").forEach(button => button.addEventListener("click", () => {
+    state.readingLog.splice(Number(button.dataset.removeBook), 1);
+    renderReadingLog();
+    showNotice("The book was removed from the reading log.");
+  }));
+}
+function safeFileName(label, ext) {
+  const name = (state.studentName || "Family").replace(/[^a-z0-9 ]/gi, "").trim() || "Family";
+  return `${name} ${label}.${ext}`;
+}
+function download(content, fileName, type) {
+  const blob = new Blob([content], {type});
+  const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.download = fileName; document.body.appendChild(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+}
+function syncProfile() { state.studentName = $("studentName").value.trim(); state.schoolYear = $("schoolYear").value.trim(); }
+function saveRecords() {
+  syncProfile(); state.savedAt = new Date().toISOString();
+  download(JSON.stringify(state, null, 2), safeFileName("Bright Beginnings Records", "json"), "application/json");
+  const confirmation = $("saveConfirmation");
+  confirmation.classList.add("show");
+  ["saveTop", "saveMain"].forEach(id => { const button = $(id); button.textContent = "Records Downloaded ✓"; });
+  showNotice("Records saved. Your Bright Beginnings file downloaded successfully.");
+  clearTimeout(saveRecords.timer);
+  saveRecords.timer = setTimeout(() => {
+    ["saveTop", "saveMain"].forEach(id => { $(id).textContent = "Save Our Records"; });
+  }, 5000);
+}
+function loadRecords(file) {
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const loaded = JSON.parse(reader.result);
+      if (!loaded || typeof loaded !== "object" || !loaded.days || !loaded.grades) throw new Error("bad file");
+      state = { ...blankState(), ...loaded, version: 3 };
+      state.readingLog = Array.isArray(loaded.readingLog) ? loaded.readingLog.map(entry => ({ date: String(entry?.date || ""), title: String(entry?.title || "") })) : [{ date: "", title: "" }];
+      state.libraryProgress = loaded.libraryProgress && typeof loaded.libraryProgress === "object" ? Object.fromEntries(libraryBooks.map(book => {
+        const item = loaded.libraryProgress[book.id] || {};
+        return [book.id, { page: Math.max(0, Math.min(book.pages.length - 1, Number(item.page) || 0)), complete: item.complete === true, finishedDate: typeof item.finishedDate === "string" ? item.finishedDate : "" }];
+      })) : {};
+      state.lastBookId = libraryBooks.some(book => book.id === loaded.lastBookId) ? loaded.lastBookId : "";
+      state.certificateName = typeof loaded.certificateName === "string" ? loaded.certificateName : "";
+      state.certificateDate = typeof loaded.certificateDate === "string" ? loaded.certificateDate : "";
+      $("studentName").value = state.studentName || ""; $("schoolYear").value = state.schoolYear || "";
+      updateAll(); renderRecords(); renderDay(); renderCertificate(); showScreen("home"); showNotice("Your family records are loaded.");
+    } catch (e) { showNotice("That file could not be read. Please choose a records file from this app."); }
+  };
+  reader.readAsText(file);
+}
+function csvCell(value) { return `"${String(value ?? "").replace(/"/g, '""')}"`; }
+function attendanceCsv() {
+  const rows = [["Student", state.studentName], ["School year", state.schoolYear], [], ["Week","Day","Theme","Attendance","Day complete","Completed work note"]];
+  weeks.forEach((w, wi) => Array.from({length:5}, (_, di) => { const d = getDay(wi,di); rows.push([wi+1,di+1,w[0],d.attendance || "Not marked",dayIsDone(wi,di) ? "Yes" : "No",d.workNote || ""]); }));
+  return rows.map(r => r.map(csvCell).join(",")).join("\n");
+}
+function average(values) { const nums = values.filter(v => v !== "" && v !== null && v !== undefined).map(Number).filter(v => Number.isFinite(v)); return nums.length ? Math.round(nums.reduce((a,b)=>a+b,0)/nums.length) : ""; }
+function gradeCsv() {
+  const rows = [["Student", state.studentName], ["School year", state.schoolYear], [], ["Week","Theme","Language Arts","Math","Discovery"]];
+  weeks.forEach((w, wi) => { const g = state.grades[wi+1] || {}; rows.push([wi+1,w[0],g.language ?? "",g.math ?? "",g.discovery ?? ""]); });
+  rows.push([], ["Average","",average(weeks.map((_,i)=>(state.grades[i+1]||{}).language)),average(weeks.map((_,i)=>(state.grades[i+1]||{}).math)),average(weeks.map((_,i)=>(state.grades[i+1]||{}).discovery))]);
+  return rows.map(r => r.map(csvCell).join(",")).join("\n");
+}
+function readingCsv() {
+  const rows = [["Student", state.studentName], ["School year", state.schoolYear], [], ["Date", "Book title"]];
+  (state.readingLog || []).filter(entry => (entry.date || entry.title)).forEach(entry => rows.push([entry.date || "", entry.title || ""]));
+  return rows.map(r => r.map(csvCell).join(",")).join("\n");
+}
+function displayDate(value) {
+  if (!value) return "Completion date";
+  const date = new Date(value + "T00:00:00");
+  return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+}
+function renderCertificate() {
+  const name = state.certificateName || state.studentName || "";
+  $("certificateName").value = name;
+  $("certificateDate").value = state.certificateDate || "";
+  $("certificatePreviewName").textContent = name || "Your learner";
+  $("certificatePreviewDate").textContent = displayDate(state.certificateDate);
+}
+function certificateHtml() {
+  const name = state.certificateName || state.studentName || "Your learner";
+  const date = displayDate(state.certificateDate);
+  return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>First Grade Completion Certificate</title><style>@page{size:landscape;margin:.35in}*{box-sizing:border-box}body{margin:0;color:#24302c;background:#fff;font-family:Arial,sans-serif}.certificate{width:100%;min-height:7.2in;border:10px double #9db394;outline:3px solid #f2c14e;outline-offset:-18px;padding:70px 58px;display:grid;place-items:center;text-align:center}.mark{font-size:34px;color:#526b51}.title{font-family:Georgia,serif;font-size:46px;color:#234238;margin:14px 0 28px}.name{display:block;width:75%;margin:20px auto 12px;border-bottom:2px solid #785036;padding:0 12px 8px;font-family:Georgia,serif;font-size:36px;color:#785036}.date{margin-top:36px}.brand{margin-top:44px;font-size:14px;color:#65716b}@media print{.certificate{min-height:7.2in}}</style></head><body><main class="certificate"><div><div class="mark">✦</div><h1 class="title">Certificate of Completion</h1><p>This certifies that</p><strong class="name">${esc(name)}</strong><p>has completed first grade through Bright Beginnings.</p><p class="date">${esc(date)}</p><p class="brand">Created with care by BékeStudio</p></div></main></body></html>`;
+}
+function yearSummaryHtml() {
+  let present=0, absent=0, excused=0; const notes=[];
+  weeks.forEach((w,wi) => Array.from({length:5},(_,di)=>{ const d=getDay(wi,di); if(d.attendance==="Present")present++; if(d.attendance==="Absent")absent++; if(d.attendance==="Excused")excused++; if((d.workNote||"").trim()) notes.push(`<li><strong>Week ${wi+1}, Day ${di+1}</strong>: ${esc(d.workNote)}</li>`); }));
+  const books = (state.readingLog || []).filter(entry => entry.date || entry.title).map(entry => `<li><strong>${esc(entry.date || "Date not entered")}</strong>: ${esc(entry.title || "Title not entered")}</li>`);
+  const lang=average(weeks.map((_,i)=>(state.grades[i+1]||{}).language)); const math=average(weeks.map((_,i)=>(state.grades[i+1]||{}).math)); const disc=average(weeks.map((_,i)=>(state.grades[i+1]||{}).discovery));
+  return `<!doctype html><html><head><meta charset="utf-8"><title>Bright Beginnings Year Summary</title><style>body{font-family:Arial,sans-serif;color:#30382f;max-width:800px;margin:40px auto;padding:0 24px;line-height:1.5}h1,h2{font-family:Georgia,serif;color:#496348}.box{border:1px solid #d9d9ca;border-radius:14px;padding:18px;margin:16px 0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{background:#ecefe4;padding:14px;border-radius:10px}.stat strong{display:block;font-size:24px}.sign{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:70px}.line{border-top:1px solid #555;padding-top:8px}@media(max-width:600px){.stats{grid-template-columns:1fr 1fr}}@media print{body{margin:0}.box{break-inside:avoid}}</style></head><body><p>BékeStudio Learning</p><h1>Bright Beginnings Year Summary</h1><div class="box"><p><strong>Student:</strong> ${esc(state.studentName || "Not entered")}</p><p><strong>School year:</strong> ${esc(state.schoolYear || "Not entered")}</p><p><strong>File saved:</strong> ${esc(state.savedAt ? new Date(state.savedAt).toLocaleString() : "Not saved yet")}</p></div><h2>Progress and attendance</h2><div class="stats"><div class="stat"><strong>${countDone()}</strong>Days complete</div><div class="stat"><strong>${present}</strong>Present</div><div class="stat"><strong>${absent}</strong>Absent</div><div class="stat"><strong>${excused}</strong>Excused</div></div><div class="box"><strong>${finishedBookCount()} of ${libraryBooks.length}</strong> library books finished</div><h2>Grade averages</h2><div class="stats"><div class="stat"><strong>${lang === "" ? "Not scored" : lang}</strong>Language Arts</div><div class="stat"><strong>${math === "" ? "Not scored" : math}</strong>Math</div><div class="stat"><strong>${disc === "" ? "Not scored" : disc}</strong>Discovery</div></div><h2>Completed work notes</h2><div class="box">${notes.length ? `<ul>${notes.join("")}</ul>` : "No work notes entered."}</div><h2>Reading log</h2><div class="box">${books.length ? `<ul>${books.join("")}</ul>` : "No books entered."}</div><div class="sign"><div class="line">Parent or teacher signature</div><div class="line">Date</div></div></body></html>`;
+}
+
+document.querySelectorAll(".nav-btn").forEach(btn => btn.addEventListener("click", () => showScreen(btn.dataset.screen)));
+$("bookSearch").addEventListener("input", renderLibrary);
+$("levelFilter").addEventListener("change", renderLibrary);
+$("topicFilter").addEventListener("change", renderLibrary);
+$("continueBook").addEventListener("click", () => openBook(Number($("continueBook").dataset.book || 0)));
+$("backToLibrary").addEventListener("click", () => { $("bookReader").classList.add("hidden"); $("libraryBrowser").classList.remove("hidden"); renderLibrary(); window.scrollTo({ top: 0, behavior: "smooth" }); });
+$("previousPage").addEventListener("click", () => { if (activeBookPage > 0) { activeBookPage--; renderBookReader(); } });
+$("nextPage").addEventListener("click", () => {
+  const book = libraryBooks[activeBookIndex];
+  const progress = bookProgress(book);
+  if (activeBookPage < book.pages.length - 1) { activeBookPage++; renderBookReader(); return; }
+  if (!progress.complete) { finishBook(); return; }
+  $("bookReader").classList.add("hidden"); $("libraryBrowser").classList.remove("hidden"); renderLibrary(); window.scrollTo({ top: 0, behavior: "smooth" });
+});
+$("continueBtn").addEventListener("click", () => { const [w,d] = findNext(); openLesson(w,d); });
+$("jumpNext").addEventListener("click", () => { const [w,d] = findNext(); openLesson(w,d); });
+$("backToWeeks").addEventListener("click", () => showScreen("weeks"));
+$("markDayBtn").addEventListener("click", () => { const d=getDay(activeWeek,activeDay); d.complete=[true,true,true,true]; if(!d.attendance)d.attendance="Present"; renderDay(); updateAll(); showNotice("This day is complete. Save your records when you finish."); });
+$("nextDayBtn").addEventListener("click", () => { if(activeWeek===35&&activeDay===4){showScreen("records");return;} if(activeDay<4)activeDay++;else{activeWeek++;activeDay=0;} openLesson(activeWeek,activeDay); });
+$("workNote").addEventListener("input", e => { getDay(activeWeek,activeDay).workNote=e.target.value; });
+$("studentName").addEventListener("input", () => { syncProfile(); if (!state.certificateName) $("certificatePreviewName").textContent = state.studentName || "Your learner"; }); $("schoolYear").addEventListener("input", syncProfile);
+$("addBook").addEventListener("click", () => { state.readingLog.push({ date: "", title: "" }); renderReadingLog(); const rows = document.querySelectorAll(".reading-row"); rows[rows.length - 1].querySelector("[data-book-title]").focus(); });
+$("certificateName").addEventListener("input", e => { state.certificateName = e.target.value; $("certificatePreviewName").textContent = e.target.value.trim() || state.studentName || "Your learner"; });
+$("certificateDate").addEventListener("input", e => { state.certificateDate = e.target.value; $("certificatePreviewDate").textContent = displayDate(e.target.value); });
+["saveTop","saveMain"].forEach(id => $(id).addEventListener("click", saveRecords));
+["loadTop","loadMain"].forEach(id => $(id).addEventListener("click", () => $("filePicker").click()));
+$("filePicker").addEventListener("change", e => { if(e.target.files[0]) loadRecords(e.target.files[0]); e.target.value=""; });
+$("attendanceReport").addEventListener("click", () => { syncProfile(); download(attendanceCsv(), safeFileName("Attendance Report","csv"), "text/csv"); showNotice("Your attendance report is downloading."); });
+$("gradeReport").addEventListener("click", () => { syncProfile(); download(gradeCsv(), safeFileName("Grade Report","csv"), "text/csv"); showNotice("Your grade report is downloading."); });
+$("readingReport").addEventListener("click", () => { syncProfile(); download(readingCsv(), safeFileName("Reading Log","csv"), "text/csv"); showNotice("Your reading log is downloading."); });
+$("yearSummary").addEventListener("click", () => { syncProfile(); state.savedAt = state.savedAt || new Date().toISOString(); download(yearSummaryHtml(), safeFileName("Year Summary","html"), "text/html"); showNotice("Your printable year summary is downloading."); });
+$("certificateDownload").addEventListener("click", () => {
+  syncProfile();
+  state.certificateName = $("certificateName").value.trim();
+  state.certificateDate = $("certificateDate").value;
+  if (!state.certificateName && !state.studentName) { showNotice("Please enter the child name before downloading the certificate."); $("certificateName").focus(); return; }
+  if (!state.certificateDate) { showNotice("Please choose the completion date before downloading the certificate."); $("certificateDate").focus(); return; }
+  download(certificateHtml(), safeFileName("First Grade Completion Certificate", "html"), "text/html");
+  showNotice("Your printable certificate is downloading.");
+});
+updateHome(); renderWeeks(); renderLibrary(); renderRecords(); renderDay(); renderCertificate();
+</script>
+</body>
+</html>
