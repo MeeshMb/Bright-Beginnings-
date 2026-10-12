@@ -1,0 +1,16 @@
+{
+  "name": "Bright Beginnings",
+  "short_name": "Bright Beginnings",
+  "description": "A complete first grade year in one gentle web app",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFF9F2",
+  "theme_color": "#234238",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
