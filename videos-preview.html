@@ -1,10 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Videos tab preview</title>
-<style>
+<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Videos preview</title><style>
     @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Cormorant+Garamond:wght@600&display=swap');
     :root {
       color-scheme: light dark;
@@ -389,11 +383,7 @@
 }
 .video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:14px;background:#111}
 .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-</style>
-</head>
-<body>
-<main class="shell">
-<section id="videos" class="screen active">
+</style></head><body><main class="shell"><section id="videos" class="screen active">
         <div class="screen-head"><div><h2>Video lessons</h2><p>Watch and learn right inside the app. Choose a subject to start.</p></div></div>
         <section class="panel">
           <div class="download-list">
@@ -415,8 +405,37 @@
           <div style="margin-top:12px"><button class="btn secondary" id="closeVideo">Close video</button></div>
         </section>
       </section>
-</main>
-<script>(function(){
+<section class="screen active" style="margin-top:24px">
+  <button class="back">‹ All weeks</button>
+  <div class="week-summary"><h2>Week 7: Digraphs</h2><p>Language Arts: sh, ch, th, and wh. Math: teen numbers as ten and ones. Discovery: rules, fairness, and responsibility.</p></div>
+  <section class="panel" id="weekVideosPanel">
+    <div class="screen-head"><div><h2>This week’s videos</h2><p>Watch first, then enjoy the day’s lessons.</p></div></div>
+    <div class="download-list" id="demoList"></div>
+    <div class="video-wrap hidden" id="demoWrap"><iframe id="demoFrame" src="about:blank" title="This week’s video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+  </section>
+</section>
+<script>
+(function(){
+  var vids = [
+    ["NK8_Tvu6bJk","Digraphs Song","Language Arts"],
+    ["hr5uugyMq-k","Teen Numbers","Math"],
+    ["JGQAp2PY8yY","Be Responsible and Respectful","Discovery"]
+  ];
+  var list = document.getElementById("demoList");
+  var wrap = document.getElementById("demoWrap");
+  var frame = document.getElementById("demoFrame");
+  list.innerHTML = vids.map(function(v){
+    return '<div class="download-item"><img class="video-thumb" src="https://i.ytimg.com/vi/'+v[0]+'/hqdefault.jpg" alt="" loading="lazy" /><div class="video-meta"><strong>'+v[1]+'</strong><span>'+v[2]+'</span></div><button class="btn sage" data-vid="'+v[0]+'">Watch</button></div>';
+  }).join("");
+  list.querySelectorAll("button").forEach(function(b){
+    b.addEventListener("click", function(){
+      frame.src = "https://www.youtube.com/embed/"+b.getAttribute("data-vid")+"?rel=0";
+      wrap.classList.remove("hidden");
+    });
+  });
+})();
+</script>
+</main><script>(function(){
         var panel = document.getElementById("videoPanel");
         var frame = document.getElementById("videoFrame");
         var title = document.getElementById("videoTitle");
@@ -433,6 +452,4 @@
           frame.src = "";
           panel.classList.add("hidden");
         });
-      })();</script>
-</body>
-</html>
+      })();</script></body></html>
